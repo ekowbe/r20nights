@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R20 Nights — Columbia University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --cream: #f0ead8;
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --rust: #b84c2b;
+    --charcoal: #1c1c1c;
+    --muted: #6b6460;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(245,242,236,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 2px;
+    font-weight: 500 !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--black) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 6rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,76,43,0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #0a0a0a 0%, #141210 50%, #0e0c0a 100%);
+  }
+
+  /* Animated grain */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* Decorative cross-hair lines */
+  .hero-lines {
+    position: absolute; inset: 0; z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.25), transparent);
+  }
+  .hero-lines::after {
+    content: '';
+    position: absolute;
+    right: calc(8% - 20px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.1), transparent);
+  }
+
+  .hero-eyebrow {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow-line {
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-eyebrow-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    position: relative; z-index: 1;
+    font-family: var(--serif);
+    font-size: clamp(4rem, 9vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.2em;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-title .line-two {
+    display: block;
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-subtitle {
+    position: relative; z-index: 1;
+    max-width: 480px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(245,242,236,0.65);
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    position: relative; z-index: 1;
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    padding: 1rem 2.2rem;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    color: var(--white);
+    text-decoration: none;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(245,242,236,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-detail {
+    position: absolute; z-index: 1;
+    right: 4rem;
+    bottom: 4rem;
+    text-align: right;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-detail-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .hero-detail-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .hero-detail-value span { color: var(--gold); }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    background: var(--gold);
+    color: var(--black);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 25s linear infinite;
+  }
+  .ticker-item {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 3rem;
+  }
+  .ticker-dot { color: var(--rust); }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 7rem 4rem; }
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-eyebrow-line { width: 30px; height: 1px; background: var(--gold); }
+  .section-eyebrow-text {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+  }
+
+  /* ─── WHAT IS R20 ─── */
+  .what {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+  .what::before {
+    content: 'R20';
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: 28vw;
+    font-weight: 900;
+    color: rgba(255,255,255,0.02);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    position: relative; z-index: 1;
+  }
+  .what-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(245,242,236,0.7);
+    margin-top: 1.8rem;
+  }
+  .what-text p + p { margin-top: 1rem; }
+
+  .what-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  .what-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.8rem 2rem;
+    border-radius: 4px;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .what-card:hover {
+    border-color: rgba(201,168,76,0.6);
+    background: rgba(201,168,76,0.04);
+  }
+  .what-card-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .what-card-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .what-card p { font-size: 0.9rem; color: rgba(245,242,236,0.6); line-height: 1.6; }
+
+  /* ─── SERVICE TIMES ─── */
+  .times { background: var(--black); }
+  .times-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .times-main-card {
+    background: linear-gradient(135deg, #1a1510, #0f0e0c);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 6px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .times-main-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--rust));
+  }
+  .times-day {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .times-time {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .times-time span { color: var(--gold); font-style: italic; }
+  .times-location {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .times-location-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .times-location-name {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .times-location-sub {
+    font-size: 0.85rem;
+    color: rgba(245,242,236,0.55);
+    margin-top: 0.2rem;
+  }
+  .times-cta {
+    display: block;
+    margin-top: 2rem;
+    background: var(--gold);
+    color: var(--black);
+    text-align: center;
+    text-decoration: none;
+    padding: 0.9rem;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+  .times-cta:hover { background: var(--gold-light); }
+
+  .times-expect h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  .expect-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .expect-item {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .expect-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+    font-size: 0.9rem;
+  }
+  .expect-content-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+  .expect-content-sub {
+    font-size: 0.83rem;
+    color: rgba(245,242,236,0.5);
+    line-height: 1.5;
+  }
+
+  /* ─── CAMPUSES ─── */
+  .campuses { background: #0d0c0b; }
+  .campuses-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  .campuses-subtitle {
+    max-width: 380px;
+    font-size: 0.95rem;
+    color: rgba(245,242,236,0.55);
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+  .campus-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+  .campus-card {
+    background: #141210;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 2rem 1.8rem;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .campus-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-3px);
+  }
+  .campus-card.featured {
+    border-color: rgba(201,168,76,0.4);
+    background: linear-gradient(135deg, #1c1610, #111009);
+  }
+  .campus-card.featured::after {
+    content: 'R20 HOME';
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+  }
+  .campus-abbr {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .campus-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .campus-details {
+    font-size: 0.8rem;
+    color: rgba(245,242,236,0.5);
+    line-height: 1.6;
+  }
+
+  /* ─── QUOTE / MARQUEE ─── */
+  .marquee-section {
+    padding: 5rem 0;
+    overflow: hidden;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 4rem;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(245,242,236,0.08);
+    flex-shrink: 0;
+  }
+  .marquee-item.highlight { color: rgba(201,168,76,0.35); }
+
+  /* ─── CONNECT / PLAN VISIT ─── */
+  .connect {
+    background: var(--black);
+    position: relative;
+  }
+  .connect-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .connect-form-wrap {
+    background: #141210;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 6px;
+    padding: 3rem;
+  }
+  .connect-form-wrap h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .connect-form-wrap p {
+    font-size: 0.88rem;
+    color: rgba(245,242,236,0.5);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .form-row { margin-bottom: 1.2rem; }
+  .form-row input,
+  .form-row select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    padding: 0.9rem 1rem;
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-row input:focus,
+  .form-row select:focus { border-color: var(--gold); }
+  .form-row input::placeholder { color: rgba(245,242,236,0.3); }
+  .form-row select option { background: #1c1c1c; }
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: 3px;
+    padding: 1rem;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .connect-text .section-title { max-width: 400px; }
+  .connect-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(245,242,236,0.6);
+    margin-top: 1.5rem;
+  }
+  .connect-promise {
+    margin-top: 3rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .promise-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .promise-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+  }
+  .promise-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(245,242,236,0.6);
+    line-height: 1.6;
+  }
+  .promise-item strong { color: var(--white); font-weight: 500; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #060504;
+    padding: 5rem 4rem 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+  .footer-brand .nav-logo { font-size: 1.8rem; display: block; margin-bottom: 1rem; }
+  .footer-brand p {
+    font-size: 0.85rem;
+    color: rgba(245,242,236,0.4);
+    line-height: 1.7;
+    max-width: 260px;
+  }
+  .footer-col h4 {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col a {
+    color: rgba(245,242,236,0.45);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: rgba(245,242,236,0.25);
+  }
+  .footer-bottom a { color: rgba(201,168,76,0.6); text-decoration: none; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE MENU BTN ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1.5px;
+    background: var(--white);
+    transition: background 0.2s;
+  }
+  .nav-hamburger:hover span { background: var(--gold); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-detail { display: none; }
+    .what-grid, .times-layout, .connect-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .campus-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 540px) {
+    .campus-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">R<span>20</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#times">Service</a></li>
+    <li><a href="#campuses">Campuses</a></li>
+    <li><a href="#connect" class="nav-cta">Plan Your Visit</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="this.classList.toggle('active')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <span class="hero-eyebrow-text">First Love Church · Columbia University</span>
+  </div>
+
+  <h1 class="hero-title">
+    You're<br>
+    <span class="line-two">welcome here.</span>
+  </h1>
+
+  <p class="hero-subtitle">
+    R20 Nights is a Friday gathering for Columbia students who are curious, searching, or simply done going through the motions. No pressure. Real community. Genuine faith.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#connect" class="btn-primary">Plan Your First Visit</a>
+    <a href="#about" class="btn-secondary">Learn more →</a>
+  </div>
+
+  <div class="hero-detail">
+    <div class="hero-detail-label">Every Friday</div>
+    <div class="hero-detail-value"><span>7:30</span> PM</div>
+    <div class="hero-detail-label" style="margin-top:1rem;">Lerner Hall, Columbia</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Every Friday Night <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">7:30 PM at Lerner Hall <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Columbia University <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">No Experience Required <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Bring a Friend <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Every Friday Night <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">7:30 PM at Lerner Hall <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Columbia University <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">No Experience Required <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Bring a Friend <span class="ticker-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- WHAT IS R20 -->
+<section class="what" id="about">
+  <div class="what-grid">
+    <div class="what-text reveal">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">What Is R20</span>
+      </div>
+      <h2 class="section-title">A space for the questions everyone's afraid to ask.</h2>
+      <p>
+        College is a season of enormous pressure and enormous possibility. R20 Nights exists for students navigating all of it — the academic weight, the social searching, the quiet questions about purpose and meaning that don't fit neatly into a syllabus.
+      </p>
+      <p>
+        R20 is part of First Love Church New York — a church with deep roots in both Africa and Manhattan. On Friday nights at Columbia, we bring that community to your campus.
+      </p>
+    </div>
+    <div class="what-cards reveal">
+      <div class="what-card">
+        <div class="what-card-num">01</div>
+        <div class="what-card-title">Live Worship</div>
+        <p>A genuine musical experience — not background noise. Songs that give language to what you're feeling, whether or not you've ever sung in a church before.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-card-num">02</div>
+        <div class="what-card-title">Honest Preaching</div>
+        <p>Real messages for real life. We tackle the questions people actually have — doubt, suffering, identity, the future — without pretending the answers are easy.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-card-num">03</div>
+        <div class="what-card-title">Community After</div>
+        <p>Coffee, desserts, and actual conversation. The hour after the service is where most people decide to come back — because they met someone worth knowing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Real faith &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Real community &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Real answers &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Friday nights &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Columbia University &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; No judgment &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Real faith &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Real community &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Real answers &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Friday nights &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Columbia University &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; No judgment &nbsp;&nbsp;·</span>
+  </div>
+</div>
+
+<!-- SERVICE TIMES -->
+<section class="times" id="times">
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <span class="section-eyebrow-text">Service Times</span>
+  </div>
+  <h2 class="section-title reveal">Come as you are. <em>Seriously.</em></h2>
+  <div class="times-layout">
+    <div class="times-main-card reveal">
+      <div class="times-day">Friday Nights</div>
+      <div class="times-time">7:<span>30</span></div>
+      <div class="times-location">
+        <div class="times-location-label">Location</div>
+        <div class="times-location-name">Lerner Hall</div>
+        <div class="times-location-sub">2920 Broadway, Columbia University</div>
+      </div>
+      <div class="times-location" style="margin-top:1rem;">
+        <div class="times-location-label">What to expect</div>
+        <div class="times-location-sub" style="color:rgba(245,242,236,0.6); font-size:0.9rem; line-height:1.7;">Worship · The Word · Community time after. Doors open at 7:00 PM. Come as you are — no dress code, no membership required.</div>
+      </div>
+      <a href="#connect" class="times-cta">Plan My Visit</a>
+    </div>
+
+    <div class="times-expect reveal">
+      <h3>What to expect on your first visit</h3>
+      <ul class="expect-list">
+        <li class="expect-item">
+          <div class="expect-icon">♫</div>
+          <div>
+            <div class="expect-content-title">Worship</div>
+            <div class="expect-content-sub">A live band leads 20–25 minutes of music. Sing along, stand, sit — whatever works for you. No pressure, no performance.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">✦</div>
+          <div>
+            <div class="expect-content-title">The Message</div>
+            <div class="expect-content-sub">A 25-minute talk grounded in scripture — practical, honest, and built around questions real people actually carry.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">☕</div>
+          <div>
+            <div class="expect-content-title">Community Time</div>
+            <div class="expect-content-sub">Coffee, desserts, and real conversation. A prayer station is available if you want one-on-one prayer before you leave.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">◎</div>
+          <div>
+            <div class="expect-content-title">No Awkward Moments</div>
+            <div class="expect-content-sub">We won't ask first-time visitors to stand, speak, or do anything uncomfortable. You're here to explore — that's enough.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUSES -->
+<section class="campuses" id="campuses">
+  <div class="campuses-intro">
+    <div>
+      <div class="section-eyebrow reveal">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Our Campuses</span>
+      </div>
+      <h2 class="section-title reveal">Bible Hangouts across <em>your</em> campus.</h2>
+      <p class="campuses-subtitle reveal">
+        R20 Nights anchors at Columbia, but our Bible Hangout community stretches across four New York campuses. Find yours.
+      </p>
+    </div>
+  </div>
+  <div class="campus-grid">
+    <div class="campus-card featured reveal">
+      <div class="campus-abbr">CU</div>
+      <div class="campus-name">Columbia University</div>
+      <div class="campus-details">
+        R20 Nights every Friday<br>
+        7:30 PM · Lerner Hall<br>
+        <span style="color:var(--gold); margin-top:0.5rem; display:block;">+ Bible Hangout</span>
+      </div>
+    </div>
+    <div class="campus-card reveal">
+      <div class="campus-abbr">NYU</div>
+      <div class="campus-name">New York University</div>
+      <div class="campus-details">
+        Weekly Bible Hangout<br>
+        Greenwich Village<br>
+        <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Thursdays</span>
+      </div>
+    </div>
+    <div class="campus-card reveal">
+      <div class="campus-abbr">CC</div>
+      <div class="campus-name">City College of NY</div>
+      <div class="campus-details">
+        Weekly Bible Hangout<br>
+        Harlem Campus<br>
+        <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Wednesdays</span>
+      </div>
+    </div>
+    <div class="campus-card reveal">
+      <div class="campus-abbr">PU</div>
+      <div class="campus-name">Pace University</div>
+      <div class="campus-details">
+        Weekly Bible Hangout<br>
+        Lower Manhattan<br>
+        <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Tuesdays</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section class="connect" id="connect">
+  <div class="connect-grid">
+    <div class="connect-form-wrap reveal">
+      <h3>Plan your first visit</h3>
+      <p>Let us know you're coming. We'll have someone look out for you when you arrive — no awkward wandering.</p>
+      <div class="form-row"><input type="text" placeholder="Your name"></div>
+      <div class="form-row"><input type="email" placeholder="Email address"></div>
+      <div class="form-row">
+        <select>
+          <option value="" disabled selected>Which campus are you at?</option>
+          <option>Columbia University</option>
+          <option>New York University</option>
+          <option>City College of New York</option>
+          <option>Pace University</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <select>
+          <option value="" disabled selected>When are you planning to visit?</option>
+          <option>This Friday</option>
+          <option>Next Friday</option>
+          <option>Just exploring for now</option>
+        </select>
+      </div>
+      <button class="form-submit" onclick="this.textContent='See you Friday ✓'; this.style.background='#5c8c5c';">I'm Coming →</button>
+    </div>
+
+    <div class="connect-text reveal">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Connect</span>
+      </div>
+      <h2 class="section-title">Everyone starts somewhere.</h2>
+      <p>
+        Walking into a new church community is a real thing to do. We know that. R20 exists to make the first step as easy as possible — and the second step worth taking.
+      </p>
+      <div class="connect-promise">
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <p><strong>No follow-up spam.</strong> We'll reach out once to say hi. That's it — unless you want more.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <p><strong>No pressure to join anything.</strong> Come to the service. Enjoy the coffee. See how you feel.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <p><strong>Questions welcome.</strong> Doubt doesn't disqualify you here. It's actually why we exist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">R<span>20</span></a>
+      <p>A Friday night gathering for New York City university students. Part of First Love Church New York.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="#times">Service Times</a></li>
+        <li><a href="#connect">Plan a Visit</a></li>
+        <li><a href="#campuses">Campuses</a></li>
+        <li><a href="#">Get Directions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <ul>
+        <li><a href="#">Bible Hangouts</a></li>
+        <li><a href="#">The 527 Series</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Prayer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>First Love Church</h4>
+      <ul>
+        <li><a href="#">About FLC NY</a></li>
+        <li><a href="#">Leadership</a></li>
+        <li><a href="#">Sunday Services</a></li>
+        <li><a href="#">Give</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 R20 Nights · First Love Church New York · <a href="#">Privacy</a></p>
+    <p style="color:rgba(201,168,76,0.4);">Every Friday · 7:30 PM · Lerner Hall, Columbia</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Smooth nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
