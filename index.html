@@ -457,7 +457,7 @@
   }
   .campus-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
   }
   .campus-card {
@@ -535,6 +535,57 @@
   }
   .marquee-item.highlight { color: rgba(201,168,76,0.35); }
 
+  /* ─── VISION ─── */
+  .vision { background: var(--black); }
+  .vision-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(201,168,76,0.55);
+    margin-top: 0.6rem;
+  }
+  .vision-lead {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(245,242,236,0.75);
+    max-width: 640px;
+    margin-top: 1.8rem;
+  }
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .vision-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2.2rem 2rem;
+    border-radius: 4px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .vision-card:hover {
+    border-color: rgba(201,168,76,0.6);
+    background: rgba(201,168,76,0.04);
+  }
+  .vision-card-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .vision-card-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+  }
+  .vision-card p { font-size: 0.92rem; color: rgba(245,242,236,0.6); line-height: 1.65; }
+  @media (max-width: 900px) {
+    .vision-grid { grid-template-columns: 1fr; }
+  }
+
   /* ─── CONNECT / PLAN VISIT ─── */
   .connect {
     background: var(--black);
@@ -600,6 +651,19 @@
     margin-top: 0.5rem;
   }
   .form-submit:hover { background: var(--gold-light); }
+  .form-submit:disabled { opacity: 0.6; cursor: default; }
+  .form-error {
+    color: var(--rust);
+    font-size: 0.82rem;
+    margin: -0.4rem 0 1rem;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+  }
   .connect-text .section-title { max-width: 400px; }
   .connect-text p {
     font-size: 1rem;
@@ -741,9 +805,9 @@
   <a href="#" class="nav-logo">R<span>20</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#times">Service</a></li>
+    <li><a href="#times">Saturdays</a></li>
     <li><a href="#campuses">Campuses</a></li>
-    <li><a href="#connect" class="nav-cta">Plan Your Visit</a></li>
+    <li><a href="#connect" class="nav-cta">Join Us Saturdays</a></li>
   </ul>
   <div class="nav-hamburger" onclick="this.classList.toggle('active')">
     <span></span><span></span><span></span>
@@ -757,7 +821,7 @@
 
   <div class="hero-eyebrow">
     <div class="hero-eyebrow-line"></div>
-    <span class="hero-eyebrow-text">R20 · Columbia University</span>
+    <span class="hero-eyebrow-text">Students · Columbia · NYU · CCNY</span>
   </div>
 
   <h1 class="hero-title">
@@ -766,18 +830,18 @@
   </h1>
 
   <p class="hero-subtitle">
-    R20 Nights is a Saturday gathering for Columbia students who are curious, searching, or simply done going through the motions. No pressure. Real community. Genuine faith.
+    We're students at Columbia, NYU, and CCNY who started gathering around a few questions worth taking seriously. Curious, skeptical, somewhere in between — you're welcome. We meet Saturdays at Avery Hall, Columbia.
   </p>
 
   <div class="hero-actions">
-    <a href="#connect" class="btn-primary">Plan Your First Visit</a>
+    <a href="#connect" class="btn-primary">Join Us on Saturdays</a>
     <a href="#about" class="btn-secondary">Learn more →</a>
   </div>
 
   <div class="hero-detail">
     <div class="hero-detail-label">Every Saturday</div>
-    <div class="hero-detail-value"><span>8:00</span> PM</div>
-    <div class="hero-detail-label" style="margin-top:1rem;">Lerner Hall, Columbia</div>
+    <div class="hero-detail-value"><span>7:00</span> PM</div>
+    <div class="hero-detail-label" style="margin-top:1rem;">Avery Hall, Columbia</div>
   </div>
 </section>
 
@@ -785,12 +849,12 @@
 <div class="ticker">
   <div class="ticker-inner">
     <span class="ticker-item">Every Saturday Night <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">8:00 PM at Lerner Hall <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">7:00 PM at Avery Hall <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Columbia University <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">No Experience Required <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Bring a Friend <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Every Saturday Night <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">8:00 PM at Lerner Hall <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">7:00 PM at Avery Hall <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Columbia University <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">No Experience Required <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Bring a Friend <span class="ticker-dot">◆</span></span>
@@ -803,31 +867,31 @@
     <div class="what-text reveal">
       <div class="section-eyebrow">
         <div class="section-eyebrow-line"></div>
-        <span class="section-eyebrow-text">What Is R20</span>
+        <span class="section-eyebrow-text">Who We Are</span>
       </div>
       <h2 class="section-title">A space for the questions everyone's afraid to ask.</h2>
       <p>
-        College is a season of enormous pressure and enormous possibility. R20 Nights exists for students navigating all of it — the academic weight, the social searching, the quiet questions about purpose and meaning that don't fit neatly into a syllabus.
+        College is a season of enormous pressure and enormous possibility. We started R20 because some of us were navigating all of it — the academic weight, the social searching, the quiet questions about purpose and meaning that don't fit neatly into a syllabus — and figured we'd rather do it together than alone.
       </p>
       <p>
-        R20 is a campus ministry that invests in young people across Manhattan. On Saturday nights at Columbia, we bring that community to your campus.
+        We're a small group of students across Columbia, NYU, and CCNY. Bible Hangouts on campus during the week, and Saturday nights at Columbia where we all come together.
       </p>
     </div>
     <div class="what-cards reveal">
       <div class="what-card">
         <div class="what-card-num">01</div>
-        <div class="what-card-title">Live Worship</div>
-        <p>A genuine musical experience — not background noise. Songs that give language to what you're feeling, whether or not you've ever sung in a church before.</p>
+        <div class="what-card-title">Music</div>
+        <p>We sing together. A band leads — sit, stand, sing along, or just listen. Whether you've done this a thousand times or never, it's fine.</p>
       </div>
       <div class="what-card">
         <div class="what-card-num">02</div>
-        <div class="what-card-title">Honest Preaching</div>
-        <p>Real messages for real life. We tackle the questions people actually have — doubt, suffering, identity, the future — without pretending the answers are easy.</p>
+        <div class="what-card-title">The Talk + Q&amp;A</div>
+        <p>Honest messages for actual life — doubt, suffering, identity, the future — then we open the floor. Ask whatever's on your mind. No question off-limits.</p>
       </div>
       <div class="what-card">
         <div class="what-card-num">03</div>
-        <div class="what-card-title">Community After</div>
-        <p>Coffee, desserts, and actual conversation. The hour after the service is where most people decide to come back — because they met someone worth knowing.</p>
+        <div class="what-card-title">Hanging Out</div>
+        <p>Coffee, desserts, and real conversation after. The hour after is where most of us actually meet each other. If something's heavy and you want prayer, we're around for that too.</p>
       </div>
     </div>
   </div>
@@ -836,73 +900,116 @@
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="marquee-item">Real faith &nbsp;&nbsp;·</span>
-    <span class="marquee-item highlight">&nbsp;&nbsp; Real community &nbsp;&nbsp;·</span>
-    <span class="marquee-item">&nbsp;&nbsp; Real answers &nbsp;&nbsp;·</span>
+    <span class="marquee-item">Honest faith &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Genuine community &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Hard questions welcome &nbsp;&nbsp;·</span>
     <span class="marquee-item highlight">&nbsp;&nbsp; Saturday nights &nbsp;&nbsp;·</span>
     <span class="marquee-item">&nbsp;&nbsp; Columbia University &nbsp;&nbsp;·</span>
     <span class="marquee-item highlight">&nbsp;&nbsp; No judgment &nbsp;&nbsp;·</span>
-    <span class="marquee-item">&nbsp;&nbsp; Real faith &nbsp;&nbsp;·</span>
-    <span class="marquee-item highlight">&nbsp;&nbsp; Real community &nbsp;&nbsp;·</span>
-    <span class="marquee-item">&nbsp;&nbsp; Real answers &nbsp;&nbsp;·</span>
-    <span class="marquee-item highlight">&nbsp;&nbsp; Saturday nights &nbsp;&nbsp;·</span>
-    <span class="marquee-item">&nbsp;&nbsp; Columbia University &nbsp;&nbsp;·</span>
-    <span class="marquee-item highlight">&nbsp;&nbsp; No judgment &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Come as you are &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Bring a friend &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; 7:00 PM, Avery Hall &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Every week &nbsp;&nbsp;·</span>
+    <span class="marquee-item">&nbsp;&nbsp; Built for skeptics &nbsp;&nbsp;·</span>
+    <span class="marquee-item highlight">&nbsp;&nbsp; Built for believers &nbsp;&nbsp;·</span>
   </div>
 </div>
+
+<!-- VISION -->
+<section class="vision" id="vision">
+  <div class="section-eyebrow reveal">
+    <div class="section-eyebrow-line"></div>
+    <span class="section-eyebrow-text">Why We're Doing This</span>
+  </div>
+  <h2 class="section-title reveal">What we're building.</h2>
+  <div class="vision-tagline reveal">Hearts on fire for New York.</div>
+  <p class="vision-lead reveal">People who walked in skeptical find a community. That community shapes how they live. And the people who were welcomed start welcoming others.</p>
+
+  <div class="vision-grid">
+    <div class="vision-card reveal">
+      <div class="vision-card-num">01</div>
+      <div class="vision-card-title">Found</div>
+      <p>You don't have to believe to belong. Come as you are, skeptical or sure, and find a community that actually wants you here.</p>
+    </div>
+    <div class="vision-card reveal">
+      <div class="vision-card-num">02</div>
+      <div class="vision-card-title">Formed</div>
+      <p>In Bible Hangouts and on Saturday nights, people grow — slowly and honestly, for the long haul. Real change, not a quick fix.</p>
+    </div>
+    <div class="vision-card reveal">
+      <div class="vision-card-num">03</div>
+      <div class="vision-card-title">Sent</div>
+      <p>The people who found a home here start building one for others. Leaders raise leaders. New communities open across the city.</p>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICE TIMES -->
 <section class="times" id="times">
   <div class="section-eyebrow reveal">
     <div class="section-eyebrow-line"></div>
-    <span class="section-eyebrow-text">Service Times</span>
+    <span class="section-eyebrow-text">Saturday Nights</span>
   </div>
   <h2 class="section-title reveal">Come as you are. <em>Seriously.</em></h2>
   <div class="times-layout">
     <div class="times-main-card reveal">
       <div class="times-day">Saturday Nights</div>
-      <div class="times-time">7:<span>30</span></div>
+      <div class="times-time">7:<span>00</span></div>
       <div class="times-location">
-        <div class="times-location-label">Location</div>
-        <div class="times-location-name">Lerner Hall</div>
-        <div class="times-location-sub">2920 Broadway, Columbia University</div>
+        <div class="times-location-label">Where</div>
+        <div class="times-location-name">Avery Hall</div>
+        <div class="times-location-sub">1172 Amsterdam Ave, on Columbia's campus</div>
       </div>
       <div class="times-location" style="margin-top:1rem;">
-        <div class="times-location-label">What to expect</div>
-        <div class="times-location-sub" style="color:rgba(245,242,236,0.6); font-size:0.9rem; line-height:1.7;">Worship · The Word · Community time after. Doors open at 7:00 PM. Come as you are — no dress code, no membership required.</div>
+        <div class="times-location-label">What it looks like</div>
+        <div class="times-location-sub" style="color:rgba(245,242,236,0.6); font-size:0.9rem; line-height:1.7;">Music · A talk · Open Q&amp;A · Hanging out after. Doors open at 6:30 PM. No dress code, nothing to sign up for.</div>
       </div>
-      <a href="#connect" class="times-cta">Plan My Visit</a>
+      <a href="#connect" class="times-cta">Join Us Saturdays</a>
     </div>
 
     <div class="times-expect reveal">
-      <h3>What to expect on your first visit</h3>
+      <h3>What it actually looks like</h3>
       <ul class="expect-list">
         <li class="expect-item">
           <div class="expect-icon">♫</div>
           <div>
-            <div class="expect-content-title">Worship</div>
-            <div class="expect-content-sub">A live band leads 20–25 minutes of music. Sing along, stand, sit — whatever works for you. No pressure, no performance.</div>
+            <div class="expect-content-title">Music</div>
+            <div class="expect-content-sub">A live band leads 20–25 minutes. Sing along, stand, sit — whatever works for you. No pressure, no performance.</div>
           </div>
         </li>
         <li class="expect-item">
           <div class="expect-icon">✦</div>
           <div>
-            <div class="expect-content-title">The Message</div>
-            <div class="expect-content-sub">A 25-minute talk grounded in scripture — practical, honest, and built around questions real people actually carry.</div>
+            <div class="expect-content-title">The Talk</div>
+            <div class="expect-content-sub">About 25 minutes — practical, honest, and built around the questions students actually carry.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">?</div>
+          <div>
+            <div class="expect-content-title">Open Q&amp;A</div>
+            <div class="expect-content-sub">After the talk, we open the floor. Ask whatever's on your mind — about what was just said, or about faith in general. No question off-limits, nothing rehearsed.</div>
           </div>
         </li>
         <li class="expect-item">
           <div class="expect-icon">☕</div>
           <div>
-            <div class="expect-content-title">Community Time</div>
-            <div class="expect-content-sub">Coffee, desserts, and real conversation. A prayer station is available if you want one-on-one prayer before you leave.</div>
+            <div class="expect-content-title">Hanging Out</div>
+            <div class="expect-content-sub">Coffee, desserts, and real conversation after. Stay as long or as little as you want.</div>
+          </div>
+        </li>
+        <li class="expect-item">
+          <div class="expect-icon">+</div>
+          <div>
+            <div class="expect-content-title">Prayer, if You Want It</div>
+            <div class="expect-content-sub">If something's heavy and you want someone to pray with you, we're around. No spotlight, no expectations — just ask, or don't.</div>
           </div>
         </li>
         <li class="expect-item">
           <div class="expect-icon">◎</div>
           <div>
             <div class="expect-content-title">No Awkward Moments</div>
-            <div class="expect-content-sub">We won't ask first-time visitors to stand, speak, or do anything uncomfortable. You're here to explore — that's enough.</div>
+            <div class="expect-content-sub">We won't ask first-timers to stand, speak, or do anything uncomfortable. You're here to check it out — that's enough.</div>
           </div>
         </li>
       </ul>
@@ -916,11 +1023,11 @@
     <div>
       <div class="section-eyebrow reveal">
         <div class="section-eyebrow-line"></div>
-        <span class="section-eyebrow-text">Our Campuses</span>
+        <span class="section-eyebrow-text">Where We Meet</span>
       </div>
-      <h2 class="section-title reveal">Bible Hangouts across <em>your</em> campus.</h2>
+      <h2 class="section-title reveal">Bible Hangouts on <em>your</em> campus.</h2>
       <p class="campuses-subtitle reveal">
-        R20 Nights anchors at Columbia, but our Bible Hangout community stretches across four New York campuses. Find yours.
+        Saturday nights bring everyone together, but during the week we meet in smaller groups across three campuses. Show up to whichever one is closest to you.
       </p>
     </div>
   </div>
@@ -930,8 +1037,7 @@
       <div class="campus-name">Columbia University</div>
       <div class="campus-details">
         R20 Nights every Saturday<br>
-        8:00 PM · Lerner Hall<br>
-        <span style="color:var(--gold); margin-top:0.5rem; display:block;">+ Bible Hangout</span>
+        7:00 PM · Avery Hall
       </div>
     </div>
     <div class="campus-card reveal">
@@ -952,15 +1058,6 @@
         <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Wednesdays</span>
       </div>
     </div>
-    <div class="campus-card reveal">
-      <div class="campus-abbr">PU</div>
-      <div class="campus-name">Pace University</div>
-      <div class="campus-details">
-        Weekly Bible Hangout<br>
-        Lower Manhattan<br>
-        <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Tuesdays</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -968,28 +1065,38 @@
 <section class="connect" id="connect">
   <div class="connect-grid">
     <div class="connect-form-wrap reveal">
-      <h3>Plan your first visit</h3>
-      <p>Let us know you're coming. We'll have someone look out for you when you arrive — no awkward wandering.</p>
-      <div class="form-row"><input type="text" placeholder="Your name"></div>
-      <div class="form-row"><input type="email" placeholder="Email address"></div>
-      <div class="form-row">
-        <select>
-          <option value="" disabled selected>Which campus are you at?</option>
-          <option>Columbia University</option>
-          <option>New York University</option>
-          <option>City College of New York</option>
-          <option>Pace University</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <select>
-          <option value="" disabled selected>When are you planning to visit?</option>
-          <option>This Saturday</option>
-          <option>Next Saturday</option>
-          <option>Just exploring for now</option>
-        </select>
-      </div>
-      <button class="form-submit" onclick="this.textContent='See you Saturday ✓'; this.style.background='#5c8c5c';">I'm Coming →</button>
+      <h3>Let us know you're coming</h3>
+      <p>Drop your info and one of us will look out for you when you walk in — no awkward wandering, no figuring out where to sit alone.</p>
+      <form id="rsvp-form" novalidate>
+        <div class="form-row">
+          <label for="rsvp-name" class="sr-only">Your name</label>
+          <input id="rsvp-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="form-row">
+          <label for="rsvp-email" class="sr-only">Email address</label>
+          <input id="rsvp-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        </div>
+        <div class="form-row">
+          <label for="rsvp-campus" class="sr-only">Which campus are you at?</label>
+          <select id="rsvp-campus" name="campus" required>
+            <option value="" disabled selected>Which campus are you at?</option>
+            <option>Columbia University</option>
+            <option>New York University</option>
+            <option>City College of New York</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="rsvp-when" class="sr-only">When are you thinking?</label>
+          <select id="rsvp-when" name="when" required>
+            <option value="" disabled selected>When are you thinking?</option>
+            <option>This Saturday</option>
+            <option>Next Saturday</option>
+            <option>Just looking for now</option>
+          </select>
+        </div>
+        <p id="rsvp-error" class="form-error" role="alert" hidden>Please fill in your name, email, and pick both options above.</p>
+        <button type="submit" class="form-submit">I'm Coming →</button>
+      </form>
     </div>
 
     <div class="connect-text reveal">
@@ -997,22 +1104,26 @@
         <div class="section-eyebrow-line"></div>
         <span class="section-eyebrow-text">Connect</span>
       </div>
-      <h2 class="section-title">Everyone starts somewhere.</h2>
+      <h2 class="section-title">First time is the hardest part.</h2>
       <p>
-        Walking into a new church community is a real thing to do. We know that. R20 exists to make the first step as easy as possible — and the second step worth taking.
+        Showing up somewhere new is a real thing to do. We know — most of us were in your spot at some point. We try to make the first step easy, and the second step worth taking.
       </p>
       <div class="connect-promise">
         <div class="promise-item">
           <div class="promise-dot"></div>
-          <p><strong>No follow-up spam.</strong> We'll reach out once to say hi. That's it — unless you want more.</p>
+          <p><strong>No follow-up spam.</strong> We'll reach out sparingly — a friendly nudge, not a campaign. That's it, unless you want more.</p>
         </div>
         <div class="promise-item">
           <div class="promise-dot"></div>
-          <p><strong>No pressure to join anything.</strong> Come to the service. Enjoy the coffee. See how you feel.</p>
+          <p><strong>No pressure to join anything.</strong> Come hang out. Enjoy the coffee. See how you feel.</p>
         </div>
         <div class="promise-item">
           <div class="promise-dot"></div>
           <p><strong>Questions welcome.</strong> Doubt doesn't disqualify you here. It's actually why we exist.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-dot"></div>
+          <p><strong>First time here? It's on us.</strong> Grab some free R20 merch on your way out — just for showing up.</p>
         </div>
       </div>
     </div>
@@ -1024,38 +1135,34 @@
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#" class="nav-logo">R<span>20</span></a>
-      <p>A Saturday night gathering for New York City university students.</p>
+      <p>A group of students at Columbia, NYU, and CCNY, gathering Saturdays at Avery Hall. Supported by First Love Church New York.</p>
     </div>
     <div class="footer-col">
       <h4>Visit</h4>
       <ul>
-        <li><a href="#times">Service Times</a></li>
+        <li><a href="#times">Saturdays</a></li>
         <li><a href="#connect">Plan a Visit</a></li>
         <li><a href="#campuses">Campuses</a></li>
-        <li><a href="#">Get Directions</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Avery+Hall+1172+Amsterdam+Ave+New+York+NY+10027" target="_blank" rel="noopener">Get Directions</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Community</h4>
       <ul>
-        <li><a href="#">Bible Hangouts</a></li>
-        <li><a href="#">The 527 Series</a></li>
-        <li><a href="#">Volunteer</a></li>
-        <li><a href="#">Prayer</a></li>
+        <li><a href="#campuses">Bible Hangouts</a></li>
+        <li><a href="#vision">Our Vision</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>First Love Church</h4>
       <ul>
-        <li><a href="#">About First Love</a></li>
-        <li><a href="#">Leadership</a></li>
-        <li><a href="#">Give</a></li>
+        <li><a href="#about">About R20</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 R20 Nights<a href="#">Privacy</a></p>
-    <p style="color:rgba(201,168,76,0.4);">Every Saturday · 8:00 PM · Lerner Hall, Columbia</p>
+    <p>© 2026 R20 Nights · First Love Church New York</p>
+    <p style="color:rgba(201,168,76,0.4);">Every Saturday · 7:00 PM · Avery Hall, Columbia</p>
   </div>
 </footer>
 
@@ -1071,6 +1178,25 @@
     });
   }, { threshold: 0.1 });
   revealEls.forEach(el => observer.observe(el));
+
+  // RSVP form validation
+  const rsvpForm = document.getElementById('rsvp-form');
+  const rsvpError = document.getElementById('rsvp-error');
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!rsvpForm.checkValidity()) {
+        rsvpError.hidden = false;
+        return;
+      }
+      rsvpError.hidden = true;
+      const submitBtn = rsvpForm.querySelector('.form-submit');
+      submitBtn.textContent = 'See you Saturday ✓';
+      submitBtn.style.background = '#5c8c5c';
+      submitBtn.disabled = true;
+      Array.from(rsvpForm.elements).forEach(el => el.disabled = true);
+    });
+  }
 
   // Smooth nav links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
