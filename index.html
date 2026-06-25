@@ -733,24 +733,6 @@
     margin-bottom: 2rem;
     line-height: 1.6;
   }
-  .form-row { margin-bottom: 1.2rem; }
-  .form-row input,
-  .form-row select {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 3px;
-    padding: 0.9rem 1rem;
-    color: var(--white);
-    font-family: var(--sans);
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-row input:focus,
-  .form-row select:focus { border-color: var(--gold); }
-  .form-row input::placeholder { color: rgba(245,242,236,0.3); }
-  .form-row select option { background: #1c1c1c; }
   .form-submit {
     width: 100%;
     background: var(--gold);
@@ -768,19 +750,6 @@
     margin-top: 0.5rem;
   }
   .form-submit:hover { background: var(--gold-light); }
-  .form-submit:disabled { opacity: 0.6; cursor: default; }
-  .form-error {
-    color: var(--rust);
-    font-size: 0.82rem;
-    margin: -0.4rem 0 1rem;
-  }
-  .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-  }
   .connect-text .section-title { max-width: 400px; }
   .connect-text p {
     font-size: 1rem;
@@ -1282,37 +1251,7 @@
     <div class="connect-form-wrap reveal">
       <h3>Let us know you're coming</h3>
       <p>Drop your info and one of us will look out for you when you walk in — no awkward wandering, no figuring out where to sit alone.</p>
-      <form id="rsvp-form" novalidate>
-        <div class="form-row">
-          <label for="rsvp-name" class="sr-only">Your name</label>
-          <input id="rsvp-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
-        </div>
-        <div class="form-row">
-          <label for="rsvp-email" class="sr-only">Email address</label>
-          <input id="rsvp-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-        </div>
-        <div class="form-row">
-          <label for="rsvp-campus" class="sr-only">Which campus are you at?</label>
-          <select id="rsvp-campus" name="campus" required>
-            <option value="" disabled selected>Which campus are you at?</option>
-            <option>Columbia University</option>
-            <option>New York University</option>
-            <option>City College of New York</option>
-            <option>Pace University</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="rsvp-when" class="sr-only">When are you thinking?</label>
-          <select id="rsvp-when" name="when" required>
-            <option value="" disabled selected>When are you thinking?</option>
-            <option>This Saturday</option>
-            <option>Next Saturday</option>
-            <option>Just looking for now</option>
-          </select>
-        </div>
-        <p id="rsvp-error" class="form-error" role="alert" hidden>Please fill in your name, email, and pick both options above.</p>
-        <button type="submit" class="form-submit">I'm Coming →</button>
-      </form>
+      <a href="/visit-us" class="form-submit" style="display:block; text-align:center; text-decoration:none; margin-top:2rem;">I'm Coming →</a>
     </div>
 
     <div class="connect-text reveal">
@@ -1426,21 +1365,6 @@
   document.getElementById('modalClose').addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  // RSVP form validation
-  const rsvpForm = document.getElementById('rsvp-form');
-  const rsvpError = document.getElementById('rsvp-error');
-  if (rsvpForm) {
-    rsvpForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!rsvpForm.checkValidity()) {
-        rsvpError.hidden = false;
-        return;
-      }
-      rsvpError.hidden = true;
-      window.location.href = '/visit-us';
-    });
-  }
 
   // Smooth nav links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
