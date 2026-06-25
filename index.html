@@ -924,7 +924,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#times">Saturdays</a></li>
     <li><a href="#campuses">Campuses</a></li>
-    <li><a href="#connect" class="nav-cta">Join Us Saturdays</a></li>
+    <li><a href="/visit-us" class="nav-cta">Join Us Saturdays</a></li>
   </ul>
   <div class="nav-hamburger" onclick="this.classList.toggle('active')">
     <span></span><span></span><span></span>
@@ -951,7 +951,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="#connect" class="btn-primary">Join Us on Saturdays</a>
+    <a href="/visit-us" class="btn-primary">Join Us on Saturdays</a>
     <a href="#about" class="btn-secondary">Learn more →</a>
   </div>
 
@@ -1081,7 +1081,7 @@
         <div class="times-location-label">What it looks like</div>
         <div class="times-location-sub" style="color:rgba(245,242,236,0.6); font-size:0.9rem; line-height:1.7;">Music · A talk · Open Q&amp;A · Hanging out after. Doors open at 6:30 PM. No dress code, nothing to sign up for.</div>
       </div>
-      <a href="#connect" class="times-cta">Join Us Saturdays</a>
+      <a href="/visit-us" class="times-cta">Join Us Saturdays</a>
     </div>
 
     <div class="times-expect reveal">
@@ -1357,7 +1357,7 @@
       <h4>Visit</h4>
       <ul>
         <li><a href="#times">Saturdays</a></li>
-        <li><a href="#connect">Plan a Visit</a></li>
+        <li><a href="/visit-us">Plan a Visit</a></li>
         <li><a href="#campuses">Campuses</a></li>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Avery+Hall+1172+Amsterdam+Ave+New+York+NY+10027" target="_blank" rel="noopener">Get Directions</a></li>
       </ul>
@@ -1438,11 +1438,7 @@
         return;
       }
       rsvpError.hidden = true;
-      const submitBtn = rsvpForm.querySelector('.form-submit');
-      submitBtn.textContent = 'See you Saturday ✓';
-      submitBtn.style.background = '#5c8c5c';
-      submitBtn.disabled = true;
-      Array.from(rsvpForm.elements).forEach(el => el.disabled = true);
+      window.location.href = '/visit-us';
     });
   }
 
