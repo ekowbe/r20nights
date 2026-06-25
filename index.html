@@ -147,13 +147,20 @@
     line-height: 0.9;
     letter-spacing: -0.03em;
     margin-bottom: 0.2em;
-    animation: fadeUp 0.8s 0.1s ease both;
+    overflow: hidden;
   }
   .hero-title .line-two {
     display: block;
     color: var(--gold);
     font-style: italic;
   }
+  .hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .hero-line.visible { opacity: 1; transform: translateY(0); }
 
   .hero-subtitle {
     position: relative; z-index: 1;
@@ -825,8 +832,8 @@
   </div>
 
   <h1 class="hero-title">
-    You're<br>
-    <span class="line-two">welcome here.</span>
+    <span class="hero-line">You're</span>
+    <span class="hero-line line-two">welcome here.</span>
   </h1>
 
   <p class="hero-subtitle">
@@ -1167,6 +1174,11 @@
 </footer>
 
 <script>
+  // Hero headline reveal
+  document.querySelectorAll('.hero-line').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 200 + i * 180);
+  });
+
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
