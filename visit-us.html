@@ -71,12 +71,19 @@
   }
   .nav-back:hover { color: var(--gold); }
 
-  /* ─── PAGE ─── */
+  /* ─── LAYOUT ─── */
   .page {
-    max-width: 740px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 5rem 2rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
   }
+
+  /* ─── LEFT: header + details ─── */
+  .page-header { position: sticky; top: 3rem; }
 
   .eyebrow {
     display: flex;
@@ -95,22 +102,69 @@
 
   h1 {
     font-family: var(--serif);
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
     font-weight: 900;
     line-height: 1.0;
     letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 
   .subheader {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: rgba(245,242,236,0.6);
-    max-width: 560px;
-    margin-bottom: 3.5rem;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(245,242,236,0.55);
+    margin-bottom: 2.5rem;
   }
 
-  /* ─── FORM EMBED ─── */
+  .detail-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .detail-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .detail-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .detail-value span { color: var(--gold); }
+
+  .promise-list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .promise-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.83rem;
+    color: rgba(245,242,236,0.5);
+    line-height: 1.6;
+  }
+  .promise-dot {
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+  .promise-item strong { color: rgba(245,242,236,0.8); font-weight: 500; }
+
+  /* ─── RIGHT: form ─── */
   .form-wrap {
     background: #141210;
     border: 1px solid rgba(201,168,76,0.2);
@@ -127,7 +181,6 @@
     background: linear-gradient(to right, var(--gold), var(--rust));
   }
 
-  /* Typeform embed sizing */
   [data-tf-live] {
     display: block;
     min-height: 520px;
@@ -135,15 +188,12 @@
 
   /* ─── DISCLAIMER ─── */
   .disclaimer {
-    margin-top: 2rem;
-    font-size: 0.75rem;
-    color: rgba(245,242,236,0.3);
+    margin-top: 1.5rem;
+    font-size: 0.72rem;
+    color: rgba(245,242,236,0.25);
     line-height: 1.7;
   }
-  .disclaimer a {
-    color: rgba(201,168,76,0.5);
-    text-decoration: none;
-  }
+  .disclaimer a { color: rgba(201,168,76,0.4); text-decoration: none; }
   .disclaimer a:hover { color: var(--gold); }
 
   /* ─── FOOTER ─── */
@@ -157,9 +207,14 @@
   footer a { color: rgba(201,168,76,0.5); text-decoration: none; }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 600px) {
+  @media (max-width: 720px) {
     nav { padding: 1.2rem 1.5rem; }
-    .page { padding: 3rem 1.5rem 5rem; }
+    .page {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .page-header { position: static; }
     .form-wrap { padding: 1.8rem 1.2rem; }
   }
 </style>
@@ -173,25 +228,63 @@
 
 <main class="page">
 
-  <div class="eyebrow">
-    <div class="eyebrow-line"></div>
-    <span class="eyebrow-text">Students · Columbia · NYU · CCNY · Pace</span>
+  <div class="page-header">
+    <div class="eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Saturday Nights</span>
+    </div>
+
+    <h1>Come<br><em style="color:var(--gold);">as you are.</em></h1>
+
+    <p class="subheader">
+      Fill out the form and one of us will be in touch before you show up — no awkward wandering, no figuring out where to sit alone.
+    </p>
+
+    <div class="detail-block">
+      <div class="detail-item">
+        <div class="detail-label">When</div>
+        <div class="detail-value">Saturdays · <span>7:00 PM</span></div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Doors open</div>
+        <div class="detail-value">6:30 PM</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Where</div>
+        <div class="detail-value">Avery Hall, Columbia</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Address</div>
+        <div class="detail-value" style="font-family:var(--sans); font-size:0.88rem; font-weight:300; color:rgba(245,242,236,0.55);">1172 Amsterdam Ave, New York</div>
+      </div>
+    </div>
+
+    <div class="promise-list">
+      <div class="promise-item">
+        <div class="promise-dot"></div>
+        <span><strong>No follow-up spam.</strong> A friendly nudge — that's it.</span>
+      </div>
+      <div class="promise-item">
+        <div class="promise-dot"></div>
+        <span><strong>No pressure to join anything.</strong> Come hang out. See how you feel.</span>
+      </div>
+      <div class="promise-item">
+        <div class="promise-dot"></div>
+        <span><strong>Questions welcome.</strong> Doubt doesn't disqualify you here.</span>
+      </div>
+    </div>
   </div>
 
-  <h1>Visit Us</h1>
+  <div>
+    <div class="form-wrap">
+      <div data-tf-live="01KVRG1PY83XJYF0531W3ZWWRW"></div>
+      <script src="//embed.typeform.com/next/embed.js"></script>
+    </div>
 
-  <p class="subheader">
-    Fill out the form below and one of us will be in touch before you show up.
-  </p>
-
-  <div class="form-wrap">
-    <div data-tf-live="01KVRG1PY83XJYF0531W3ZWWRW"></div>
-    <script src="//embed.typeform.com/next/embed.js"></script>
+    <p class="disclaimer">
+      By submitting, you agree to receive communications from us via text and email. You can text STOP to cancel or HELP for assistance. Message and data rates may apply. Message frequency varies. R20 Campus Ministry Privacy Policy &amp; Terms of Use apply.
+    </p>
   </div>
-
-  <p class="disclaimer">
-    By submitting, you agree to receive communications from us via text and email. You can text STOP to cancel or HELP for assistance. Message and data rates may apply. Message frequency varies. R20 Campus Ministry Privacy Policy &amp; Terms of Use apply.
-  </p>
 
 </main>
 
