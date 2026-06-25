@@ -484,12 +484,12 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    margin-top: 1.2rem;
+    margin-top: 1.4rem;
     background: none;
     border: none;
     color: var(--gold);
     font-family: var(--sans);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -497,57 +497,102 @@
     padding: 0;
     transition: opacity 0.2s;
   }
-  .campus-toggle:hover { opacity: 0.75; }
-  .campus-toggle-arrow {
-    display: inline-block;
+  .campus-toggle:hover { opacity: 0.7; }
+
+  /* ─── CAMPUS MODAL ─── */
+  .campus-modal-backdrop {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .campus-modal-backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .campus-modal {
+    background: #141210;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 580px;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(20px);
     transition: transform 0.3s ease;
   }
-  .campus-card.open .campus-toggle-arrow { transform: rotate(180deg); }
-  .campus-dropdown {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+  .campus-modal-backdrop.open .campus-modal {
+    transform: translateY(0);
   }
-  .campus-card.open .campus-dropdown { max-height: 900px; }
-  .campus-dropdown-inner {
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    margin-top: 1.2rem;
+  .campus-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky; top: 0;
+    background: #141210;
+    z-index: 1;
+  }
+  .campus-modal-abbr {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .campus-modal-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .campus-modal-close {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(245,242,236,0.5);
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .campus-modal-close:hover { border-color: var(--gold); color: var(--gold); }
+  .campus-modal-body {
+    padding: 1.5rem 2rem 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 0;
   }
-  .campus-dropdown-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+  .campus-hangout-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }
+  .campus-hangout-block:last-child { border-bottom: none; }
+  .campus-dropdown-row { display: flex; flex-direction: column; gap: 0.3rem; }
   .campus-dropdown-label {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
   }
   .campus-dropdown-value {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: rgba(245,242,236,0.75);
     line-height: 1.5;
   }
-  .campus-dropdown-value a {
-    color: var(--gold);
-    text-decoration: none;
-  }
+  .campus-dropdown-value a { color: var(--gold); text-decoration: none; }
   .campus-dropdown-value a:hover { text-decoration: underline; }
-  .campus-hangout-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-  .campus-hangout-block + .campus-hangout-block {
-    padding-top: 1rem;
-    border-top: 1px dashed rgba(255,255,255,0.06);
-  }
   .campus-card.featured {
     border-color: rgba(201,168,76,0.4);
     background: linear-gradient(135deg, #1c1610, #111009);
@@ -1092,48 +1137,58 @@
       </p>
     </div>
   </div>
+  <!-- CAMPUS MODAL -->
+  <div class="campus-modal-backdrop" id="campusModal" role="dialog" aria-modal="true">
+    <div class="campus-modal">
+      <div class="campus-modal-header">
+        <div>
+          <div class="campus-modal-abbr" id="modalAbbr"></div>
+          <div class="campus-modal-name" id="modalName"></div>
+        </div>
+        <button class="campus-modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
+      <div class="campus-modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
   <div class="campus-grid">
-    <div class="campus-card featured reveal">
+    <div class="campus-card featured reveal" data-abbr="CU" data-name="Columbia University" data-hangouts="5">
       <div class="campus-abbr">CU</div>
       <div class="campus-name">Columbia University</div>
       <div class="campus-details">
         R20 Nights every Saturday<br>
         7:00 PM · Avery Hall
       </div>
-      <button class="campus-toggle" aria-expanded="false">
-        Details <span class="campus-toggle-arrow">↓</span>
-      </button>
-      <div class="campus-dropdown">
-        <div class="campus-dropdown-inner">
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
+      <button class="campus-toggle">Bible Hangouts →</button>
+      <div class="campus-hangout-data" hidden>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
         </div>
       </div>
     </div>
-    <div class="campus-card reveal">
+    <div class="campus-card reveal" data-abbr="NYU" data-name="New York University">
       <div class="campus-abbr">NYU</div>
       <div class="campus-name">New York University</div>
       <div class="campus-details">
@@ -1141,35 +1196,31 @@
         Greenwich Village<br>
         <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Thursdays</span>
       </div>
-      <button class="campus-toggle" aria-expanded="false">
-        Details <span class="campus-toggle-arrow">↓</span>
-      </button>
-      <div class="campus-dropdown">
-        <div class="campus-dropdown-inner">
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
+      <button class="campus-toggle">Bible Hangouts →</button>
+      <div class="campus-hangout-data" hidden>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
+        </div>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
         </div>
       </div>
     </div>
-    <div class="campus-card reveal">
+    <div class="campus-card reveal" data-abbr="CC" data-name="City College of NY">
       <div class="campus-abbr">CC</div>
       <div class="campus-name">City College of NY</div>
       <div class="campus-details">
@@ -1177,20 +1228,16 @@
         Harlem Campus<br>
         <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Wednesdays</span>
       </div>
-      <button class="campus-toggle" aria-expanded="false">
-        Details <span class="campus-toggle-arrow">↓</span>
-      </button>
-      <div class="campus-dropdown">
-        <div class="campus-dropdown-inner">
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">Wednesdays · TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
+      <button class="campus-toggle">Bible Hangout →</button>
+      <div class="campus-hangout-data" hidden>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">Wednesdays · TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
         </div>
       </div>
     </div>
-    <div class="campus-card reveal">
+    <div class="campus-card reveal" data-abbr="PU" data-name="Pace University">
       <div class="campus-abbr">PU</div>
       <div class="campus-name">Pace University</div>
       <div class="campus-details">
@@ -1198,16 +1245,12 @@
         Lower Manhattan<br>
         <span style="color:rgba(201,168,76,0.6); margin-top:0.5rem; display:block;">Tuesdays</span>
       </div>
-      <button class="campus-toggle" aria-expanded="false">
-        Details <span class="campus-toggle-arrow">↓</span>
-      </button>
-      <div class="campus-dropdown">
-        <div class="campus-dropdown-inner">
-          <div class="campus-hangout-block">
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">Tuesdays · TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
-            <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
-          </div>
+      <button class="campus-toggle">Bible Hangout →</button>
+      <div class="campus-hangout-data" hidden>
+        <div class="campus-hangout-block">
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">When</div><div class="campus-dropdown-value">Tuesdays · TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Where</div><div class="campus-dropdown-value">TBD</div></div>
+          <div class="campus-dropdown-row"><div class="campus-dropdown-label">Reach out</div><div class="campus-dropdown-value"><a href="#">TBD</a></div></div>
         </div>
       </div>
     </div>
@@ -1346,14 +1389,32 @@
   }, { threshold: 0.1 });
   revealEls.forEach(el => observer.observe(el));
 
-  // Campus card dropdowns
+  // Campus modal
+  const modal = document.getElementById('campusModal');
+  const modalAbbr = document.getElementById('modalAbbr');
+  const modalName = document.getElementById('modalName');
+  const modalBody = document.getElementById('modalBody');
+
+  function openModal(card) {
+    modalAbbr.textContent = card.dataset.abbr;
+    modalName.textContent = card.dataset.name;
+    modalBody.innerHTML = card.querySelector('.campus-hangout-data').innerHTML;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   document.querySelectorAll('.campus-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.campus-card');
-      const isOpen = card.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen);
-    });
+    btn.addEventListener('click', () => openModal(btn.closest('.campus-card')));
   });
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   // RSVP form validation
   const rsvpForm = document.getElementById('rsvp-form');
