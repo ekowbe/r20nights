@@ -16,7 +16,41 @@
 <meta name="twitter:description" content="We're students at Columbia, NYU, CCNY, and Pace gathering Saturday nights at Avery Hall. Come curious. Come skeptical. You're welcome here.">
 <meta name="twitter:image" content="https://r20.nyc/favicon/openGraphTag-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EventSeries",
+  "name": "R20 Nights",
+  "description": "A Saturday night gathering for students at Columbia, NYU, CCNY, and Pace. Curious, skeptical, or somewhere in between — you're welcome.",
+  "url": "https://r20.nyc",
+  "location": {
+    "@type": "Place",
+    "name": "Avery Hall, Columbia University",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1172 Amsterdam Ave",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10027"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "R20 Nights"
+  },
+  "eventSchedule": {
+    "@type": "Schedule",
+    "byDay": "https://schema.org/Saturday",
+    "startTime": "19:00",
+    "endTime": "21:30"
+  }
+}
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -852,19 +886,101 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ─── MOBILE MENU BTN ─── */
+  /* ─── SKIP LINK ─── */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: var(--gold);
+    color: var(--black);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 2px;
+    z-index: 200;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  /* ─── FOCUS RINGS ─── */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ─── HAMBURGER ─── */
   .nav-hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    padding: 4px;
+    padding: 8px;
+    background: none;
+    border: none;
+    border-radius: 2px;
   }
   .nav-hamburger span {
     display: block; width: 22px; height: 1.5px;
     background: var(--white);
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.3s, opacity 0.3s;
+    transform-origin: center;
   }
   .nav-hamburger:hover span { background: var(--gold); }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(10,10,10,0.97);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-menu.open { opacity: 1; }
+  .mobile-menu a {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 700;
+    color: rgba(245,242,236,0.7);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover, .mobile-menu a:focus { color: var(--gold); }
+  .mobile-menu .mobile-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black) !important;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border-radius: 2px;
+    margin-top: 1rem;
+  }
+  .mobile-menu-close {
+    position: absolute;
+    top: 1.4rem; right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(245,242,236,0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+  }
+  .mobile-menu-close:hover { color: var(--gold); }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
@@ -886,8 +1002,19 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">✕</button>
+  <a href="#about" class="mobile-menu-link">About</a>
+  <a href="#times" class="mobile-menu-link">Saturdays</a>
+  <a href="#campuses" class="mobile-menu-link">Campuses</a>
+  <a href="/visit-us" class="mobile-cta">Join Us Saturdays</a>
+</div>
+
 <!-- NAV -->
-<nav>
+<nav aria-label="Main navigation">
   <a href="#" class="nav-logo">R<span>20</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -895,10 +1022,12 @@
     <li><a href="#campuses">Campuses</a></li>
     <li><a href="/visit-us" class="nav-cta">Join Us Saturdays</a></li>
   </ul>
-  <div class="nav-hamburger" onclick="this.classList.toggle('active')">
+  <button class="nav-hamburger" id="navHamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
+
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
@@ -1118,7 +1247,7 @@
     </div>
   </div>
   <!-- CAMPUS MODAL -->
-  <div class="campus-modal-backdrop" id="campusModal" role="dialog" aria-modal="true">
+  <div class="campus-modal-backdrop" id="campusModal" role="dialog" aria-modal="true" aria-labelledby="modalName" hidden>
     <div class="campus-modal">
       <div class="campus-modal-header">
         <div>
@@ -1285,6 +1414,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1345,26 +1476,63 @@
   const modalName = document.getElementById('modalName');
   const modalBody = document.getElementById('modalBody');
 
-  function openModal(card) {
+  let modalTrigger = null;
+
+  function openModal(card, trigger) {
+    modalTrigger = trigger;
     modalAbbr.textContent = card.dataset.abbr;
     modalName.textContent = card.dataset.name;
     modalBody.innerHTML = card.querySelector('.campus-hangout-data').innerHTML;
-    modal.classList.add('open');
+    modal.removeAttribute('hidden');
+    requestAnimationFrame(() => modal.classList.add('open'));
     document.body.style.overflow = 'hidden';
+    document.getElementById('modalClose').focus();
   }
 
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    setTimeout(() => modal.setAttribute('hidden', ''), 300);
+    if (modalTrigger) modalTrigger.focus();
   }
 
   document.querySelectorAll('.campus-toggle').forEach(btn => {
-    btn.addEventListener('click', () => openModal(btn.closest('.campus-card')));
+    btn.addEventListener('click', () => openModal(btn.closest('.campus-card'), btn));
   });
 
   document.getElementById('modalClose').addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  // Mobile menu
+  const hamburger = document.getElementById('navHamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileMenuClose');
+
+  function openMobileMenu() {
+    mobileMenu.style.display = 'flex';
+    requestAnimationFrame(() => mobileMenu.classList.add('open'));
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    mobileClose.focus();
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(() => { mobileMenu.style.display = 'none'; }, 300);
+    hamburger.focus();
+  }
+
+  hamburger.addEventListener('click', openMobileMenu);
+  mobileClose.addEventListener('click', closeMobileMenu);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMobileMenu();
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMobileMenu);
+  });
 
   // Smooth nav links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
