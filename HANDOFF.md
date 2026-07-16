@@ -1,40 +1,66 @@
 # R20 Nights — Handoff
 
-_Updated: 2026-07-05_
+_Updated: 2026-07-16_
 
 ## What this is
 Static marketing site for **R20 Nights**, a Saturday-night student gathering at Columbia
-(Columbia, NYU, CCNY, Pace). Two pages: `index.html` (landing) and `visit-us.html`.
-Plain HTML/CSS — no build step, no framework.
+(Columbia, NYU, CCNY, Pace). Three pages: `index.html` (landing), `visit-us.html`, and
+`leadership.html`. Plain HTML/CSS — no build step, no framework.
 
 ## Current state
 - Live at **r20.nyc**, auto-deploys on push to `main`. `vercel.json` enables clean URLs.
 - Repo: `github.com/ekowbe/r20nights`.
-- **Collaborator: Vania Senanu** — she owns `visit-us.html` and the Typeform/VisitorReach
-  integration. Two open GitHub issues for her: #2 (favicon improvements) and #3 (redesign
-  OG image to match dark/gold brand).
+- **Collaborator: Vania Senanu** — two open GitHub issues for her: #2 (favicon improvements)
+  and #3 (redesign OG image to match dark/gold brand).
 
 ## Recent work (this session)
-- Full content pass: Avery Hall removed everywhere, times corrected (6:30 doors / 7:00 PM),
-  Pace University added to campus cards and RSVP form, Vision section updated to
-  Found → Formed → Fielded.
-- Frontend best-practices pass: mobile nav (hamburger now works — fullscreen overlay),
-  skip link, focus rings, aria labels, non-blocking font loading, JSON-LD structured data.
-- Connect section wired to `/visit-us` (Vania's Typeform page) — dummy form removed.
-- `visit-us.html` redesigned: two-column layout, sticky header with time/location/promises.
-- Voice audit: no "ministry", "the service", "the message", "our community" anywhere.
-- git global user identity set to Ekow Bentsi-Enchill / ekow.bentsi.enchill@gmail.com.
+- **What We Believe** paragraph added inside the "Who We Are" section (`index.html`), as a
+  full-width second row in the `.what-grid`, separated by a gold divider. Copy finalized:
+  *"We're a gathering of students who take Jesus seriously — his life, his death, his
+  resurrection, and what he asks of us now. The Bible shapes how we read the world, and we'd
+  rather work it out together than alone. Whatever you're making of any of it, there's room
+  for you here. You don't need to have it figured out to show up on a Saturday night."*
+- **`leadership.html`** (new page) — `/leadership`. Bishop James Quist-Therson + Pastor Ekow
+  Bentsi-Enchill, exact titles, tie line, 112-25 Queens Blvd NY 11375, ekow@r20.nyc. Built
+  for Twilio 10DLC compliance (public source linking Ekow to R20 Campus Ministry).
+- **`visit-us.html`** — Typeform removed entirely. Right column now has two Oikos CTAs:
+  primary "Come to R20 Nights" → `join.r20.nyc/hi?src=r20nyc-visit`, secondary "Ask us
+  anything" → `join.r20.nyc/hi?src=r20nyc-ask&ask=1`. Left column copy needs rewrite
+  (currently still references "Fill out the form" — stale from Typeform era).
+- **`index.html`** — All CTAs now route straight to Oikos (no intermediate /visit-us):
+  hero, nav, mobile nav, times section, connect section, footer. Each has a unique `?src=`
+  tag for analytics. "Plan a Visit" removed from footer per spec.
 
 ## Open / pending
-- [ ] Deep research report in progress (in-flight workflow): **should R20 add a statement
-  of faith or central tenets section?** — awaiting results, discuss before implementing.
+- [ ] **Twilio DNS verification** — Add TXT record to r20.nyc on Namecheap:
+  - Host: `twilio` · Type: TXT
+  - Value: `twilio-domain-verification=988297391b5b1ba03b8cb1588fffdcf5`
+  - Then hit "Check verification" in Twilio console.
+- [ ] **`visit-us.html` left column copy** — rewrite to remove "Fill out the form" /
+  "let us know you're coming" framing (Typeform-era). Should set up what Saturday nights
+  are; right column handles the CTA.
+- [ ] **`leadership.html` photos** — initials placeholders (JQ / EB) are live. Swap in
+  real photos when ready.
+- [ ] **`leadership.html` bios** — Ekow to approve/refine both bios before treating as final.
+- [ ] **First Love New York public link** — needed for Twilio reply as second public source
+  for the address. Add to leadership page once confirmed.
 - [ ] Vania: OG image redesign (issue #3) — dark/gold, matches site aesthetic.
-- [ ] Vania: Favicon + OG tag improvements (issue #2) — .ico, 180px touch icon,
-  og:image:width/height, og:site_name.
+- [ ] Vania: Favicon + OG tag improvements (issue #2).
 - [ ] Campus card hangout details: all blocks are TBD — need real When/Where/Reach Out
   per hangout (Columbia ×5, NYU ×4, CCNY ×1, Pace ×1).
-- [ ] Typeform colors: Vania needs to update in Typeform dashboard
-  (bg #0a0a0a, text #f5f2ec, button #c9a84c / #0a0a0a).
+- [ ] Typeform colors: Vania — may no longer be needed now that Typeform is removed from
+  visit-us. Confirm with Vania whether Typeform is still used anywhere.
+
+## Oikos CTA map (`?src=` values)
+| Placement | Label | src tag |
+|---|---|---|
+| Hero | New here? Come to R20 Nights | `r20nyc-home` |
+| Nav / Mobile nav | Come to R20 Nights | `r20nyc-nav` |
+| Times section | Come to R20 Nights | `r20nyc-times` |
+| Connect section | I'm Coming → | `r20nyc-connect` |
+| Footer | Come to R20 Nights | `r20nyc-footer` |
+| visit-us primary | Come to R20 Nights | `r20nyc-visit` |
+| visit-us secondary (ask) | Ask us anything | `r20nyc-ask&ask=1` |
 
 ## Key facts (do not change without checking)
 - Saturday nights, 7:00 PM start, 6:30 PM doors. Location: Columbia University (no
@@ -42,6 +68,8 @@ Plain HTML/CSS — no build step, no framework.
 - Voice: peer ("we", "us"), never institutional. No "ministry", "the service", "the message".
 - First Love Church: footer only, never subject of a sentence.
 - Three campuses + Pace: Columbia (5 hangouts), NYU (4), CCNY (1), Pace (1).
+- R20 Campus Ministry address: 112-25 Queens Blvd, New York, NY 11375.
+- Contact: ekow@r20.nyc.
 
 ## Key commands
 ```bash
@@ -53,4 +81,6 @@ git push origin main       # deploys to Vercel automatically
 ## Gotchas
 - No build step. Edit HTML/CSS directly, open in browser to test, push to deploy.
 - `.claude/launch.json` exists locally for preview server — not committed, that's fine.
+- All inbound CTAs must keep `?src=` tags — they drive Oikos/Reach analytics.
+- Do NOT build a form on r20.nyc — all capture goes through `join.r20.nyc/hi` (Oikos).
 - R20 ministry docs (leadership guide, meeting notes) stay on Desktop, not in this repo.

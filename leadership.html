@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership — R20 Campus Ministry</title>
+<link rel="icon" type="image/png" href="/favicon/r20Web-favicon.png">
+<link rel="apple-touch-icon" href="/favicon/r20Web-favicon.png">
+<meta name="description" content="R20 Campus Ministry is led by Bishop James Quist-Therson and Pastor Ekow Bentsi-Enchill of First Love New York.">
+<meta property="og:title" content="Leadership — R20 Campus Ministry">
+<meta property="og:description" content="R20 is the campus ministry of First Love New York.">
+<meta property="og:url" content="https://r20.nyc/leadership">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --charcoal: #1c1c1c;
+    --muted: #6b6460;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(245,242,236,0.5);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--gold); }
+
+  /* ─── MAIN ─── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 7rem;
+  }
+
+  /* ─── EYEBROW ─── */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow-line { width: 30px; height: 1px; background: var(--gold); }
+  .eyebrow-text {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4rem;
+  }
+
+  .tie-line {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(245,242,236,0.6);
+    max-width: 520px;
+    margin-bottom: 4.5rem;
+    border-left: 2px solid rgba(201,168,76,0.35);
+    padding-left: 1.2rem;
+  }
+
+  /* ─── PEOPLE ─── */
+  .people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  .person-card {
+    background: #111009;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 6px;
+    padding: 2.4rem 2rem 2rem;
+    position: relative;
+  }
+  .person-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    border-radius: 6px 6px 0 0;
+  }
+
+  .person-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(201,168,76,0.3);
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 900;
+  }
+
+  .person-name {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .person-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-transform: uppercase;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .person-bio {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(245,242,236,0.5);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-block {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 3rem;
+  }
+
+  .contact-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .contact-details {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(245,242,236,0.55);
+  }
+
+  .contact-details a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .contact-details a:hover { text-decoration: underline; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.78rem;
+    color: rgba(245,242,236,0.2);
+  }
+  footer a { color: rgba(201,168,76,0.5); text-decoration: none; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    nav { padding: 1.2rem 1.5rem; }
+    main { padding: 3.5rem 1.5rem 6rem; }
+    .people { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">R<span>20</span></a>
+  <a href="/" class="nav-back">← Back to r20.nyc</a>
+</nav>
+
+<main>
+
+  <div class="eyebrow">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Leadership</span>
+  </div>
+
+  <h1>Who leads R20.</h1>
+
+  <p class="tie-line">R20 is the campus ministry of First Love New York.</p>
+
+  <div class="people">
+
+    <div class="person-card">
+      <div class="person-photo">JQ</div>
+      <div class="person-name">Bishop James Quist-Therson</div>
+      <div class="person-title">Lead Pastor · First Love New York</div>
+      <p class="person-bio">Bishop James leads First Love New York and oversees R20 as part of the church's mission to students across the city.</p>
+    </div>
+
+    <div class="person-card">
+      <div class="person-photo">EB</div>
+      <div class="person-name">Pastor Ekow Bentsi-Enchill</div>
+      <div class="person-title">Associate Pastor · R20 Campus Ministry</div>
+      <p class="person-bio">Ekow oversees R20's day-to-day presence across Columbia, NYU, CCNY, and Pace — Saturday nights and Bible Hangouts through the week.</p>
+    </div>
+
+  </div>
+
+  <div class="contact-block">
+    <div class="contact-label">Contact</div>
+    <div class="contact-details">
+      R20 Campus Ministry<br>
+      112-25 Queens Blvd, New York, NY 11375<br>
+      <a href="mailto:ekow@r20.nyc">ekow@r20.nyc</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 R20 · Supported by <a href="/">First Love New York</a> · Every Saturday, 7:00 PM · Columbia University
+</footer>
+
+</body>
+</html>

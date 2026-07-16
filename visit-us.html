@@ -164,8 +164,8 @@
   }
   .promise-item strong { color: rgba(245,242,236,0.8); font-weight: 500; }
 
-  /* ─── RIGHT: form ─── */
-  .form-wrap {
+  /* ─── RIGHT: CTAs ─── */
+  .cta-wrap {
     background: #141210;
     border: 1px solid rgba(201,168,76,0.2);
     border-radius: 6px;
@@ -173,7 +173,7 @@
     position: relative;
     overflow: hidden;
   }
-  .form-wrap::before {
+  .cta-wrap::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -181,9 +181,55 @@
     background: linear-gradient(to right, var(--gold), var(--rust));
   }
 
-  [data-tf-live] {
+  .cta-heading {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+
+  .cta-subtext {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(245,242,236,0.5);
+    margin-bottom: 2.2rem;
+  }
+
+  .cta-primary {
     display: block;
-    min-height: 520px;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+    margin-bottom: 1.2rem;
+  }
+  .cta-primary:hover { background: var(--gold-light); }
+
+  .cta-secondary {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(245,242,236,0.45);
+    text-decoration: none;
+    line-height: 1.6;
+    transition: color 0.2s;
+  }
+  .cta-secondary:hover { color: var(--gold); }
+  .cta-secondary strong { font-weight: 500; color: rgba(245,242,236,0.7); }
+
+  .cta-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin: 2rem 0;
   }
 
   /* ─── DISCLAIMER ─── */
@@ -276,13 +322,23 @@
   </div>
 
   <div>
-    <div class="form-wrap">
-      <div data-tf-live="01KVRG1PY83XJYF0531W3ZWWRW"></div>
-      <script src="//embed.typeform.com/next/embed.js"></script>
+    <div class="cta-wrap">
+      <div class="cta-heading">Ready to come?</div>
+      <p class="cta-subtext">Leave your name and a real person will text you the details before Saturday — no awkward wandering, no figuring out where to sit alone.</p>
+
+      <a class="cta-primary" href="https://join.r20.nyc/hi?src=r20nyc-visit">
+        Come to R20 Nights →
+      </a>
+
+      <hr class="cta-divider">
+
+      <a class="cta-secondary" href="https://join.r20.nyc/hi?src=r20nyc-ask&ask=1">
+        <strong>Ask us anything</strong> — got a question or a doubt? We'll answer. Nothing off-limits.
+      </a>
     </div>
 
     <p class="disclaimer">
-      By submitting, you agree to receive communications from us via text and email. You can text STOP to cancel or HELP for assistance. Message and data rates may apply. Message frequency varies. R20 Campus Ministry Privacy Policy &amp; Terms of Use apply.
+      By connecting, you agree to receive communications from us via text and email. You can text STOP to cancel or HELP for assistance. Message and data rates may apply. R20 Campus Ministry Privacy Policy &amp; Terms of Use apply.
     </p>
   </div>
 

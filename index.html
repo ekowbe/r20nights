@@ -337,8 +337,9 @@
   .what-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
+    column-gap: 6rem;
+    row-gap: 0;
+    align-items: start;
     position: relative; z-index: 1;
   }
   .what-text p {
@@ -658,6 +659,19 @@
     font-size: 0.8rem;
     color: rgba(245,242,236,0.5);
     line-height: 1.6;
+  }
+
+  .what-beliefs {
+    grid-column: 1 / -1;
+    padding-top: 3.5rem;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+  .beliefs-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(245,242,236,0.75);
+    max-width: 640px;
+    margin-top: 1.8rem;
   }
 
   /* ─── QUOTE / MARQUEE ─── */
@@ -1008,7 +1022,7 @@
   <a href="#about" class="mobile-menu-link">About</a>
   <a href="#times" class="mobile-menu-link">Saturdays</a>
   <a href="#campuses" class="mobile-menu-link">Campuses</a>
-  <a href="/visit-us" class="mobile-cta">Join Us Saturdays</a>
+  <a href="https://join.r20.nyc/hi?src=r20nyc-nav" class="mobile-cta">Join Us Saturdays</a>
 </div>
 
 <!-- NAV -->
@@ -1018,7 +1032,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#times">Saturdays</a></li>
     <li><a href="#campuses">Campuses</a></li>
-    <li><a href="/visit-us" class="nav-cta">Join Us Saturdays</a></li>
+    <li><a href="https://join.r20.nyc/hi?src=r20nyc-nav" class="nav-cta">Come to R20 Nights</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -1047,7 +1061,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="/visit-us" class="btn-primary">Join Us on Saturdays</a>
+    <a href="https://join.r20.nyc/hi?src=r20nyc-home" class="btn-primary">New here? Come to R20 Nights</a>
     <a href="#about" class="btn-secondary">Learn more →</a>
   </div>
 
@@ -1106,6 +1120,14 @@
         <div class="what-card-title">Hanging Out</div>
         <p>Coffee, desserts, and real conversation after. The hour after is where most of us actually meet each other. If something's heavy and you want prayer, we're around for that too.</p>
       </div>
+    </div>
+
+    <div class="what-beliefs">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">What We Believe</span>
+      </div>
+      <p class="beliefs-text">We're a gathering of students who take Jesus seriously — his life, his death, his resurrection, and what he asks of us now. The Bible shapes how we read the world, and we'd rather work it out together than alone. Whatever you're making of any of it, there's room for you here. You don't need to have it figured out to show up on a Saturday night.</p>
     </div>
   </div>
 </section>
@@ -1177,7 +1199,7 @@
         <div class="times-location-label">What it looks like</div>
         <div class="times-location-sub" style="color:rgba(245,242,236,0.6); font-size:0.9rem; line-height:1.7;">Music · A talk · Open Q&amp;A · Hanging out after. Doors open at 6:30 PM. No dress code, nothing to sign up for.</div>
       </div>
-      <a href="/visit-us" class="times-cta">Join Us Saturdays</a>
+      <a href="https://join.r20.nyc/hi?src=r20nyc-times" class="times-cta">Come to R20 Nights</a>
     </div>
 
     <div class="times-expect reveal">
@@ -1376,9 +1398,9 @@
 <section class="connect" id="connect">
   <div class="connect-grid">
     <div class="connect-form-wrap reveal">
-      <h3>Let us know you're coming</h3>
-      <p>Drop your info and one of us will look out for you when you walk in — no awkward wandering, no figuring out where to sit alone.</p>
-      <a href="/visit-us" class="form-submit" style="display:block; text-align:center; text-decoration:none; margin-top:2rem;">I'm Coming →</a>
+      <h3>Come to R20 Nights</h3>
+      <p>Leave your name and a real person will text you the details before Saturday — where to go, what to expect, who to look for.</p>
+      <a href="https://join.r20.nyc/hi?src=r20nyc-connect" class="form-submit" style="display:block; text-align:center; text-decoration:none; margin-top:2rem;">I'm Coming →</a>
     </div>
 
     <div class="connect-text reveal">
@@ -1425,7 +1447,7 @@
       <h4>Visit</h4>
       <ul>
         <li><a href="#times">Saturdays</a></li>
-        <li><a href="/visit-us">Plan a Visit</a></li>
+        <li><a href="https://join.r20.nyc/hi?src=r20nyc-footer">Come to R20 Nights</a></li>
         <li><a href="#campuses">Campuses</a></li>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Columbia+University+New+York+NY" target="_blank" rel="noopener">Get Directions</a></li>
       </ul>
