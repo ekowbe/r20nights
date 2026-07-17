@@ -13,6 +13,15 @@ Static marketing site for **R20 Nights**, a Saturday-night student gathering at 
 - **Collaborator: Vania Senanu** — two open GitHub issues for her: #2 (favicon improvements)
   and #3 (redesign OG image to match dark/gold brand).
 
+## Recent work (2026-07-16, cont. — Oikos chat)
+- **All CTAs rewired `/hi` → `/welcome`** (the Oikos cold/discovery door) across `index.html`
+  + `visit-us.html`. Rule: the website links to **`join.r20.nyc/welcome`** (site visitors
+  haven't been to a Night); only the physical at-a-Night QR card uses `/hi`.
+- **`vercel.json`**: `/visit-us` now 302-redirects → `join.r20.nyc/welcome?src=r20nyc-visit`.
+- **Homepage footer** now carries the legal name **"R20 Campus Ministry"** + address
+  (112-25 Queens Blvd, NY 11375) — for **Twilio 10DLC flag 18601** (business-name ↔ website).
+- `.claude/` now gitignored.
+
 ## Recent work (this session)
 - **What We Believe** paragraph added inside the "Who We Are" section (`index.html`), as a
   full-width second row in the `.what-grid`, separated by a gold divider. Copy finalized:
@@ -82,5 +91,6 @@ git push origin main       # deploys to Vercel automatically
 - No build step. Edit HTML/CSS directly, open in browser to test, push to deploy.
 - `.claude/launch.json` exists locally for preview server — not committed, that's fine.
 - All inbound CTAs must keep `?src=` tags — they drive Oikos/Reach analytics.
-- Do NOT build a form on r20.nyc — all capture goes through `join.r20.nyc/hi` (Oikos).
+- Do NOT build a form on r20.nyc — all site capture goes through `join.r20.nyc/welcome`
+  (Oikos cold door); the at-a-Night QR card uses `/hi`. Keep `?src=` tags on every link.
 - R20 ministry docs (leadership guide, meeting notes) stay on Desktop, not in this repo.
