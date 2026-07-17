@@ -21,6 +21,10 @@ Static marketing site for **R20 Nights**, a Saturday-night student gathering at 
 - **Homepage footer** now carries the legal name **"R20 Campus Ministry"** + address
   (112-25 Queens Blvd, NY 11375) — for **Twilio 10DLC flag 18601** (business-name ↔ website).
 - `.claude/` now gitignored.
+- **`visit-us.html` removed** — its reassurance context already lives on the homepage
+  (`#times` "Come as you are" + `#connect` "First time is the hardest part" promise list),
+  so no separate page needed. The `/visit-us` → `/welcome` redirect stays as a legacy
+  fallback so any old link still forwards to the capture.
 
 ## Recent work (this session)
 - **What We Believe** paragraph added inside the "Who We Are" section (`index.html`), as a
@@ -45,9 +49,6 @@ Static marketing site for **R20 Nights**, a Saturday-night student gathering at 
   - Host: `twilio` · Type: TXT
   - Value: `twilio-domain-verification=988297391b5b1ba03b8cb1588fffdcf5`
   - Then hit "Check verification" in Twilio console.
-- [ ] **`visit-us.html` left column copy** — rewrite to remove "Fill out the form" /
-  "let us know you're coming" framing (Typeform-era). Should set up what Saturday nights
-  are; right column handles the CTA.
 - [ ] **`leadership.html` photos** — initials placeholders (JQ / EB) are live. Swap in
   real photos when ready.
 - [ ] **`leadership.html` bios** — Ekow to approve/refine both bios before treating as final.
