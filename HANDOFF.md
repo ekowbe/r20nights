@@ -12,7 +12,14 @@ redirect in place, file still on disk), `leadership.html`. Plain HTML/CSS — no
 - Repo: `github.com/ekowbe/r20nights`.
 - **Collaborator: Vania Senanu** — one open GitHub issue: #2 (favicon improvements). Issue #3 (OG image) is done this session.
 
-## Recent work (2026-07-18)
+## Recent work (2026-07-18) — continued
+- **Design direction held — dark/gold/Playfair identity stays.** Adelaide (social media) proposed a white/blue/Poppins redesign ("Apple-meets-church-plant"). Scored against 5 criteria (differentiation, audience alignment, tonal fit, rebrand cost, longevity): current design 23/25, proposed 8/25. Decision: keep current identity, make 3 targeted improvements. Decision brief shared with Adelaide as a public artifact. **A/B comparison tool** built (artifact https://claude.ai/code/artifact/07c1b422-079c-4cbd-83c3-d9f9980507b9) — tracks votes + comments in localStorage, pass-the-phone flow for hallway research with students. Run this if you want actual audience data before closing the question.
+- **3 targeted improvements identified (not yet implemented):**
+  1. Body text: bump DM Sans from weight 300 → 400 for mobile legibility (one CSS line)
+  2. Section padding: audit and increase vertical gap between sections at 375px breakpoints
+  3. Muted interactive text: raise opacity from ~50% → 65% on hover/interactive states
+
+## Recent work (2026-07-18) — earlier
 - **OG image redesigned** — new dark/gold 1200×630 card deployed to `favicon/openGraphTag-favicon.png`.
   Dark `#0a0a0a` background, R20 wordmark (R cream / 20 gold), Playfair Display 900, eyebrow
   "SATURDAY NIGHTS · NEW YORK", Playfair italic tagline, school names muted at bottom. Closes
