@@ -1,2 +1,8 @@
 .claude/
 .DS_Store
+
+# local scratch / source assets — not for deploy
+potential pics/
+motion-demo.html
+motion-demo-film.html
+img/nights/

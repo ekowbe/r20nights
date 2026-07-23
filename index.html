@@ -165,6 +165,50 @@
     background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.1), transparent);
   }
 
+  /* ─── HERO FILM STRIP (background) ─── */
+  .hf-zone {
+    position: absolute; top: 50%; left: 50%;
+    width: 132vw; transform: translate(-50%,-50%) rotate(-1deg);
+    z-index: 0; pointer-events: none;
+  }
+  .hf-tape {
+    position: relative; overflow: hidden; background: #0d0b07;
+    animation: hfWeave 6s ease-in-out infinite;
+  }
+  @keyframes hfWeave { 0%,100%{transform:translateY(0);} 30%{transform:translateY(-1.5px);} 60%{transform:translateY(1px);} }
+  .hf-strip {
+    display: flex; flex-direction: row; align-items: stretch;
+    width: max-content; animation: hfSlide 70s linear infinite; will-change: transform;
+  }
+  @keyframes hfSlide { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  .hf-cell { flex: 0 0 auto; display: flex; flex-direction: column; background: #0d0b07; position: relative; }
+  .hf-rail { height: 32px; display: flex; align-items: center; gap: 32px; padding: 0 16px; background: #131009; position: relative; }
+  .hf-rail::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: rgba(201,168,76,0.20); }
+  .hf-rail.top::after { bottom: 0; }
+  .hf-rail.bottom::after { top: 0; }
+  .hf-hole { flex: 0 0 auto; width: 18px; height: 12px; border-radius: 3px; background: #040301; box-shadow: inset 0 2px 3px rgba(0,0,0,1), 0 0 0 0.5px rgba(201,168,76,0.14); }
+  .hf-edge { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-family: var(--sans); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.34em; color: rgba(201,168,76,0.5); white-space: nowrap; }
+  .hf-rail.bottom .hf-edge { left: auto; right: 20px; }
+  .hf-photo { position: relative; height: clamp(300px,54vh,560px); aspect-ratio: 3/2; margin: 6px 4px; background: #161208; overflow: hidden; border-radius: 2px; }
+  .hf-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.22) sepia(0.28) contrast(1.02) brightness(0.82) saturate(0.72); }
+  .hf-photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 54%, rgba(10,7,0,0.42) 100%); }
+  .hf-num { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); font-family: var(--sans); font-size: 0.55rem; letter-spacing: 0.15em; color: rgba(201,168,76,0.5); }
+  /* left-weighted scrim: dark on left for the headline, photos peek through on the right */
+  .hf-scrim {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      linear-gradient(100deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.86) 34%, rgba(10,10,10,0.60) 64%, rgba(10,10,10,0.42) 100%),
+      radial-gradient(ellipse at 50% 50%, rgba(10,10,10,0) 42%, rgba(10,10,10,0.55) 100%);
+  }
+  @media (prefers-reduced-motion: reduce) { .hf-strip, .hf-tape { animation: none !important; } }
+  @media (max-width: 760px) {
+    .hf-photo { height: clamp(220px,40vh,340px); }
+    .hf-zone { width: 210vw; }
+    .hf-scrim { background:
+      linear-gradient(180deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.62) 38%, rgba(10,10,10,0.6) 66%, rgba(10,10,10,0.95) 100%),
+      linear-gradient(90deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.12) 55%, rgba(10,10,10,0) 100%); }
+  }
+
   .hero-eyebrow {
     position: relative; z-index: 1;
     display: flex; align-items: center; gap: 1rem;
@@ -1056,6 +1100,10 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-lines"></div>
+  <div class="hf-zone" aria-hidden="true">
+    <div class="hf-tape"><div class="hf-strip" id="heroStrip"></div></div>
+  </div>
+  <div class="hf-scrim" aria-hidden="true"></div>
 
   <div class="hero-eyebrow">
     <div class="hero-eyebrow-line"></div>
@@ -1136,9 +1184,9 @@
     <div class="what-beliefs">
       <div class="section-eyebrow">
         <div class="section-eyebrow-line"></div>
-        <span class="section-eyebrow-text">What We Believe</span>
+        <span class="section-eyebrow-text">Where We're Coming From</span>
       </div>
-      <p class="beliefs-text">We're a gathering of students who take Jesus seriously — his life, his death, his resurrection, and what he asks of us now. The Bible shapes how we read the world, and we'd rather work it out together than alone. Whatever you're making of any of it, there's room for you here. You don't need to have it figured out to show up on a Saturday night.</p>
+      <p class="beliefs-text">We're students who've found something real in Jesus, and we're still figuring out what that means together. You don't have to believe any of it to be here. Wherever you're landing with all of it, there's room for you in R20.</p>
     </div>
   </div>
 </section>
@@ -1168,8 +1216,7 @@
     <span class="section-eyebrow-text">Why We're Doing This</span>
   </div>
   <h2 class="section-title reveal">What we're building.</h2>
-  <div class="vision-tagline reveal">Hearts on fire for New York.</div>
-  <p class="vision-lead reveal">People who walked in skeptical find a community. That community shapes how they live. And the people who were welcomed start welcoming others.</p>
+  <p class="vision-lead reveal">People who walk in skeptical find a community. That community shapes how they live. And the people who were welcomed start welcoming others.</p>
 
   <div class="vision-grid">
     <div class="vision-card reveal">
@@ -1185,7 +1232,7 @@
     <div class="vision-card reveal">
       <div class="vision-card-num">03</div>
       <div class="vision-card-title">Fielded</div>
-      <p>The people who found a home here start building one for others. Leaders raise leaders. New communities open across the city.</p>
+      <p>The people who found a home here start building one for others. New hangouts, new faces, across the city.</p>
     </div>
   </div>
 </section>
@@ -1437,10 +1484,6 @@
           <div class="promise-dot"></div>
           <p><strong>Questions welcome.</strong> Doubt doesn't disqualify you here. It's actually why we exist.</p>
         </div>
-        <div class="promise-item">
-          <div class="promise-dot"></div>
-          <p><strong>First time here? It's on us.</strong> Grab some free R20 merch on your way out — just for showing up.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -1467,7 +1510,7 @@
     <div class="footer-col">
       <h4>Community</h4>
       <ul>
-        <li><a href="#campuses">Bible Hangouts</a></li>
+        <li><a href="/hangouts">Bible Hangouts</a></li>
         <li><a href="#vision">Our Vision</a></li>
       </ul>
     </div>
@@ -1480,6 +1523,28 @@
 </footer>
 
 <script>
+  // Hero film strip: 9 cropped professional + 4 candid Misc interspersed
+  (function () {
+    const strip = document.getElementById('heroStrip');
+    if (!strip) return;
+    const photos = Array.from({length: 13}, (_, i) => `img/film/f${String(i+1).padStart(2,'0')}.jpg`);
+    const rail = (side, txt) => {
+      let holes = '';
+      for (let h = 0; h < 6; h++) holes += '<span class="hf-hole"></span>';
+      return `<div class="hf-rail ${side}">${txt ? `<span class="hf-edge">${txt}</span>` : ''}${holes}</div>`;
+    };
+    let html = '', n = 12;
+    for (let rep = 0; rep < 2; rep++) {
+      photos.forEach((src, i) => {
+        const top = i % 3 === 0 ? 'R20 NIGHTS' : (i % 3 === 1 ? '' : 'SATURDAY');
+        const eager = rep === 0 && i < 3;
+        html += `<div class="hf-cell">${rail('top', top)}<div class="hf-photo"><img src="${src}" alt="" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></div><span class="hf-num">▸ ${n}${String.fromCharCode(65 + (i % 2))}</span>${rail('bottom', i % 4 === 2 ? 'COLUMBIA' : '')}</div>`;
+        n++;
+      });
+    }
+    strip.innerHTML = html;
+  })();
+
   // Hero headline reveal
   document.querySelectorAll('.hero-line').forEach((el, i) => {
     setTimeout(() => el.classList.add('visible'), 200 + i * 180);

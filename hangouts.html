@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What a Bible Hangout's Actually Like — R20 Nights</title>
+<link rel="icon" type="image/png" href="/favicon/r20Web-favicon.png">
+<link rel="apple-touch-icon" href="/favicon/r20Web-favicon.png">
+<meta property="og:title" content="What a Bible Hangout's actually like — R20 Nights">
+<meta property="og:description" content="Before you show up: here's what a midweek R20 hangout on your campus actually looks like. Real rooms, real people. Most of us came alone the first time.">
+<meta property="og:image" content="https://r20.nyc/favicon/openGraphTag-favicon.png">
+<meta property="og:url" content="https://r20.nyc/hangouts">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What a Bible Hangout's actually like — R20 Nights">
+<meta name="twitter:description" content="Real rooms, real people. Most of us came alone the first time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black:#0a0a0a; --white:#f5f2ec; --cream:#f0ead8; --gold:#c9a84c; --gold-light:#e8c96d;
+    --charcoal:#1c1c1c; --muted:#6b6460;
+    --serif:'Playfair Display', Georgia, serif; --sans:'DM Sans', sans-serif;
+  }
+  html { scroll-behavior:smooth; }
+  body { background:var(--black); color:var(--white); font-family:var(--sans); font-weight:300; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; }
+  img { max-width:100%; display:block; }
+
+  /* ─── NAV ─── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.4rem 4rem;
+    background:linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .nav-logo { font-family:var(--serif); font-weight:900; font-size:1.6rem; text-decoration:none; color:var(--white); letter-spacing:-.01em; }
+  .nav-logo span { color:var(--gold); }
+  .nav-links { display:flex; align-items:center; gap:2.2rem; list-style:none; }
+  .nav-links a { text-decoration:none; color:var(--white); font-size:.85rem; letter-spacing:.02em; opacity:.85; transition:opacity .2s, color .2s; }
+  .nav-links a:hover { opacity:1; color:var(--gold); }
+  .nav-cta { border:1px solid var(--gold); border-radius:2px; padding:.55rem 1.1rem; color:var(--gold)!important; opacity:1!important; }
+  .nav-cta:hover { background:var(--gold); color:var(--black)!important; }
+  @media (max-width:760px){ nav{ padding:1.1rem 1.4rem; } .nav-links{ gap:1.1rem; } .nav-links li.hide-sm{ display:none; } }
+
+  /* ─── HERO ─── */
+  .hero { padding:11rem 2rem 3.5rem; max-width:840px; margin:0 auto; text-align:center; }
+  .eyebrow { display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.4rem; }
+  .eyebrow-line { width:36px; height:1px; background:var(--gold); }
+  .eyebrow-text { font-size:.72rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+  .hero h1 { font-family:var(--serif); font-weight:900; font-size:clamp(2.6rem,7vw,4.6rem); line-height:1.02; letter-spacing:-.02em; }
+  .hero h1 em { color:var(--gold); font-style:italic; }
+  .hero p { margin:1.6rem auto 0; max-width:56ch; font-size:1.08rem; line-height:1.75; color:rgba(245,242,236,.8); }
+  .back-link { display:inline-block; margin-top:2rem; font-size:.85rem; color:var(--gold); text-decoration:none; opacity:.85; }
+  .back-link:hover { opacity:1; }
+
+  /* ─── FLOW FACTS ─── */
+  .facts { max-width:1000px; margin:2.5rem auto 0; padding:0 2rem; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(201,168,76,.16); border:1px solid rgba(201,168,76,.16); border-radius:4px; overflow:hidden; }
+  .fact { background:var(--black); padding:1.6rem 1.2rem; text-align:center; }
+  .fact-label { font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:500; }
+  .fact-value { margin-top:.5rem; font-family:var(--serif); font-weight:700; font-size:1.15rem; color:var(--white); line-height:1.25; }
+  .fact-sub { margin-top:.25rem; font-size:.8rem; color:rgba(245,242,236,.55); }
+  @media (max-width:760px){ .facts{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ─── HONEST BLURB ─── */
+  .blurb { max-width:600px; margin:3.5rem auto 0; padding:0 2rem; text-align:center; }
+  .blurb p { font-size:1.12rem; line-height:1.8; color:rgba(245,242,236,.85); }
+  .blurb p + p { margin-top:1.1rem; }
+  .blurb .pull { font-family:var(--serif); font-style:italic; font-size:1.5rem; line-height:1.5; color:var(--gold); }
+
+  /* ─── GALLERY ─── */
+  .gallery-head { max-width:1100px; margin:4.5rem auto 1.6rem; padding:0 2rem; }
+  .gallery-head .eyebrow { justify-content:flex-start; margin-bottom:.7rem; }
+  .gallery-head h2 { font-family:var(--serif); font-weight:700; font-size:clamp(1.6rem,4vw,2.3rem); }
+  .gallery-head p { margin-top:.5rem; font-size:.95rem; color:rgba(245,242,236,.6); max-width:52ch; }
+  .gallery { max-width:1100px; margin:0 auto; padding:0 2rem 1rem; columns:3; column-gap:12px; }
+  @media (max-width:900px){ .gallery{ columns:2; } }
+  @media (max-width:520px){ .gallery{ columns:1; } }
+  .shot { position:relative; margin:0 0 12px; break-inside:avoid; border-radius:4px; overflow:hidden; background:var(--charcoal); }
+  .shot img { width:100%; height:auto; filter:saturate(.92) contrast(1.02); transition:filter .3s, transform .5s; }
+  .shot:hover img { filter:saturate(1) contrast(1.03); transform:scale(1.02); }
+  .shot .cap { position:absolute; left:0; right:0; bottom:0; padding:1.6rem .9rem .7rem; font-size:.82rem; color:var(--cream); background:linear-gradient(to top, rgba(10,10,10,.82), transparent); }
+
+  /* ─── CTA ─── */
+  .cta-band { max-width:760px; margin:4rem auto 0; padding:3rem 2rem 1rem; text-align:center; }
+  .cta-band h2 { font-family:var(--serif); font-weight:700; font-size:clamp(1.8rem,5vw,2.8rem); line-height:1.1; }
+  .cta-band p { margin:1rem auto 2rem; max-width:46ch; font-size:1.05rem; line-height:1.7; color:rgba(245,242,236,.78); }
+  .btn-primary { display:inline-block; background:var(--gold); color:var(--black); text-decoration:none; padding:1rem 2.2rem; font-weight:500; font-size:.95rem; letter-spacing:.02em; border-radius:2px; transition:background .2s, transform .2s; }
+  .btn-primary:hover { background:var(--gold-light); transform:translateY(-1px); }
+
+  /* ─── FOOTER ─── */
+  footer { margin-top:5rem; padding:3rem 2rem; border-top:1px solid rgba(255,255,255,.07); text-align:center; }
+  footer .flogo { font-family:var(--serif); font-weight:900; font-size:1.5rem; color:var(--white); }
+  footer .flogo span { color:var(--gold); }
+  footer p { margin-top:.8rem; font-size:.8rem; color:var(--muted); line-height:1.6; }
+  footer a { color:var(--gold); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <a href="/" class="nav-logo">R<span>20</span></a>
+  <ul class="nav-links">
+    <li class="hide-sm"><a href="/#about">About</a></li>
+    <li class="hide-sm"><a href="/#times">Saturdays</a></li>
+    <li><a href="https://join.r20.nyc/welcome?src=r20nyc-hangouts-nav" class="nav-cta">Come to R20 Nights</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Midweek · On Your Campus</span>
+      <span class="eyebrow-line"></span>
+    </div>
+    <h1>What a hangout's<br><em>actually like.</em></h1>
+    <p>Saturday night is the easy place to start. This is what comes next — a midweek hangout on your own campus, usually a friend bringing you along once you already know a few faces. Smaller, chiller, zero pressure. Here's exactly what it's like, so none of it feels like a mystery.</p>
+  </section>
+
+  <!-- FLOW FACTS -->
+  <section class="facts" aria-label="What to expect">
+    <div class="fact">
+      <div class="fact-label">Who</div>
+      <div class="fact-value">~10 students</div>
+      <div class="fact-sub">Your campus. Mostly people who came alone the first time.</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">When</div>
+      <div class="fact-value">Midweek nights</div>
+      <div class="fact-sub">Around an hour. Come late, leave early — no one minds.</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">Where</div>
+      <div class="fact-value">A dorm lounge</div>
+      <div class="fact-sub">Someone's common room. Couches, not pews.</div>
+    </div>
+    <div class="fact">
+      <div class="fact-label">What</div>
+      <div class="fact-value">Talk it out</div>
+      <div class="fact-sub">We read a bit, then talk about it — and whatever else is going on.</div>
+    </div>
+  </section>
+
+  <!-- HONEST BLURB -->
+  <section class="blurb">
+    <p class="pull">You don't have to believe anything to show up.</p>
+    <p>There's no sign-in, no putting you on the spot, no weird icebreaker where you have to say something spiritual. People ask real questions. People disagree. Someone usually brings snacks. If you want to just listen the whole time, that's completely normal.</p>
+    <p>Most of us walked in the first time not knowing a single person. An hour later it didn't feel like that anymore.</p>
+  </section>
+
+  <!-- GALLERY -->
+  <div class="gallery-head">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Real nights · Real rooms</span>
+    </div>
+    <h2>See for yourself.</h2>
+    <p>Actual photos from actual hangouts — nothing staged. This is the room.</p>
+  </div>
+
+  <section class="gallery" id="gallery"></section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <h2>Start with Saturday.</h2>
+    <p>The easiest way in is just showing up to a Night — no hangout required, no one singles you out, slip in and out as you like. Come once, meet a few people, and the campus hangouts open up from there.</p>
+    <a class="btn-primary" href="https://join.r20.nyc/welcome?src=r20nyc-hangouts-cta">Come to R20 Nights →</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="flogo">R<span>20</span></div>
+  <p>Saturday nights at Columbia University · New York, NY<br>
+     A ministry of First Love Church · <a href="mailto:ekow@r20.nyc">ekow@r20.nyc</a></p>
+</footer>
+
+<script>
+  // Candid Bible-Hangout photos. A few carry honest, anxiety-lowering captions.
+  const shots = [
+    {img:'h01', cap:'A Tuesday, someone’s dorm lounge.'},
+    {img:'h02', cap:'Snacks are basically guaranteed.'},
+    {img:'h03'},
+    {img:'h04'},
+    {img:'h05', cap:'Came for the people, stayed for the people.'},
+    {img:'h06'},
+    {img:'h07', cap:'Nobody performs here.'},
+    {img:'h08'},
+    {img:'h09'},
+    {img:'h10'},
+    {img:'h11', cap:'This could be your Tuesday.'},
+  ];
+  const g = document.getElementById('gallery');
+  g.innerHTML = shots.map(s => `
+    <figure class="shot">
+      <img src="img/hangouts/${s.img}.jpg" alt="Students at an R20 campus hangout" loading="lazy" decoding="async">
+      ${s.cap ? `<figcaption class="cap">${s.cap}</figcaption>` : ''}
+    </figure>`).join('');
+</script>
+</body>
+</html>
