@@ -181,25 +181,12 @@
 </footer>
 
 <script>
-  // Candid Bible-Hangout photos. A few carry honest, anxiety-lowering captions.
-  const shots = [
-    {img:'h01', cap:'A Tuesday, someone’s dorm lounge.'},
-    {img:'h02', cap:'Snacks are basically guaranteed.'},
-    {img:'h03'},
-    {img:'h04'},
-    {img:'h05', cap:'Came for the people, stayed for the people.'},
-    {img:'h06'},
-    {img:'h07', cap:'Nobody performs here.'},
-    {img:'h08'},
-    {img:'h09'},
-    {img:'h10'},
-    {img:'h11', cap:'This could be your Tuesday.'},
-  ];
+  // Genuine Bible-Hangout photos only. No captions.
+  const shots = ['h01','h02','h03','h04','h05','h06','h07'];
   const g = document.getElementById('gallery');
-  g.innerHTML = shots.map(s => `
+  g.innerHTML = shots.map(img => `
     <figure class="shot">
-      <img src="img/hangouts/${s.img}.jpg" alt="Students at an R20 campus hangout" loading="lazy" decoding="async">
-      ${s.cap ? `<figcaption class="cap">${s.cap}</figcaption>` : ''}
+      <img src="img/hangouts/${img}.jpg" alt="Students at an R20 campus hangout" loading="lazy" decoding="async">
     </figure>`).join('');
 </script>
 </body>
